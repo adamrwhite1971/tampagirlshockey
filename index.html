@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tampa Bay Girls Hockey Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ice: #e8f4fd;
+    --ice-mid: #c2dff5;
+    --rink-blue: #0a3d6b;
+    --puck: #111418;
+    --blade: #2196f3;
+    --blade-light: #64b5f6;
+    --gold: #f5c518;
+    --red: #d32f2f;
+    --white: #ffffff;
+    --gray: #8a9baa;
+    --card-bg: #ffffff;
+    --surface: #f0f7ff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--puck);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--rink-blue);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .rink-lines {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background:
+      repeating-linear-gradient(90deg, #fff 0px, #fff 2px, transparent 2px, transparent 80px),
+      repeating-linear-gradient(0deg, #fff 0px, #fff 2px, transparent 2px, transparent 80px);
+  }
+
+  .center-circle {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border: 3px solid rgba(255,255,255,0.08);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .header-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 36px 24px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .logo-block {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .puck-logo {
+    width: 64px;
+    height: 64px;
+    background: var(--blade);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.15), 0 8px 24px rgba(0,0,0,0.3);
+    flex-shrink: 0;
+  }
+
+  .site-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 5vw, 48px);
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+
+  .site-subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--blade-light);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .header-badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 10px 18px;
+    color: var(--ice);
+    font-size: 13px;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  .header-badge strong {
+    color: var(--gold);
+    font-size: 15px;
+    display: block;
+  }
+
+  /* FILTERS */
+  .filter-bar {
+    background: var(--rink-blue);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 16px 24px;
+  }
+
+  .filter-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .filter-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-right: 4px;
+    white-space: nowrap;
+  }
+
+  .filter-btn {
+    padding: 7px 16px;
+    border-radius: 100px;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover { border-color: var(--blade-light); color: var(--white); }
+  .filter-btn.active { background: var(--blade); border-color: var(--blade); color: var(--white); }
+
+  /* MAIN */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--rink-blue);
+    letter-spacing: 0.5px;
+  }
+
+  .event-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+
+  /* EVENT GRID */
+  .event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  /* EVENT CARD */
+  .event-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(10,61,107,0.07);
+    border: 1px solid rgba(10,61,107,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .event-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(10,61,107,0.13);
+  }
+
+  .card-stripe {
+    height: 5px;
+    width: 100%;
+  }
+
+  .stripe-tryout { background: linear-gradient(90deg, var(--red), #ef5350); }
+  .stripe-clinic { background: linear-gradient(90deg, var(--blade), #42a5f5); }
+  .stripe-instructional { background: linear-gradient(90deg, #2e7d32, #66bb6a); }
+  .stripe-tournament { background: linear-gradient(90deg, var(--gold), #ffca28); }
+  .stripe-camp { background: linear-gradient(90deg, #6a1b9a, #ab47bc); }
+
+  .card-body {
+    padding: 20px 22px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .card-type-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .event-type-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .tag-tryout { background: #fdecea; color: var(--red); }
+  .tag-clinic { background: #e3f2fd; color: #1565c0; }
+  .tag-instructional { background: #e8f5e9; color: #2e7d32; }
+  .tag-tournament { background: #fffde7; color: #f57f17; }
+  .tag-camp { background: #f3e5f5; color: #6a1b9a; }
+
+  .age-group {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+
+  .event-name {
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--rink-blue);
+    line-height: 1.3;
+    margin-bottom: 5px;
+  }
+
+  .event-org {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 14px;
+  }
+
+  .event-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .meta-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: #4a5a6a;
+    line-height: 1.4;
+  }
+
+  .meta-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .cost-free { color: #2e7d32; font-weight: 600; }
+  .cost-paid { color: var(--puck); }
+
+  .card-footer {
+    padding: 14px 22px;
+    border-top: 1px solid rgba(10,61,107,0.06);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .reg-btn {
+    padding: 9px 20px;
+    background: var(--rink-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.16s ease;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .reg-btn:hover { background: var(--blade); }
+
+  .spots-left {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 0.5px;
+  }
+
+  .spots-low { color: var(--red); }
+
+  /* NO RESULTS */
+  .no-results {
+    text-align: center;
+    padding: 64px 24px;
+    color: var(--gray);
+    display: none;
+  }
+  .no-results.visible { display: block; }
+  .no-results h3 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--rink-blue); margin-bottom: 8px; }
+
+  /* SUBMIT BANNER */
+  .submit-banner {
+    background: var(--rink-blue);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .submit-text h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--white);
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .submit-text p { font-size: 14px; color: var(--ice-mid); line-height: 1.5; }
+
+  .submit-btn {
+    padding: 12px 28px;
+    background: var(--gold);
+    color: var(--puck);
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.15s;
+  }
+
+  .submit-btn:hover { opacity: 0.88; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 1px;
+    border-top: 1px solid var(--ice-mid);
+  }
+
+  @media (max-width: 600px) {
+    .header-badge { display: none; }
+    .event-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="rink-lines"></div>
+  <div class="center-circle"></div>
+  <div class="header-inner">
+    <div class="logo-block">
+      <div class="puck-logo">🏒</div>
+      <div>
+        <div class="site-title">Tampa Bay Girls Hockey Hub</div>
+        <div class="site-subtitle">Every event. One place.</div>
+      </div>
+    </div>
+    <div class="header-badge">
+      <strong>Tampa Bay Area</strong>
+      Tryouts · Clinics · Camps · Tournaments<br>
+      Girls & Women · All Ages & Levels
+    </div>
+  </div>
+</header>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" onclick="filterEvents('all', this)">All Events</button>
+    <button class="filter-btn" onclick="filterEvents('tryout', this)">Tryouts</button>
+    <button class="filter-btn" onclick="filterEvents('clinic', this)">Clinics</button>
+    <button class="filter-btn" onclick="filterEvents('instructional', this)">Instructional</button>
+    <button class="filter-btn" onclick="filterEvents('tournament', this)">Tournaments</button>
+    <button class="filter-btn" onclick="filterEvents('camp', this)">Camps</button>
+  </div>
+</div>
+
+<main>
+  <div class="section-header">
+    <div class="section-title">Upcoming Events</div>
+    <div class="event-count" id="eventCount"></div>
+  </div>
+
+  <div class="event-grid" id="eventGrid"></div>
+  <div class="no-results" id="noResults">
+    <h3>No events found</h3>
+    <p>Try a different filter, or check back soon as new events are added.</p>
+  </div>
+
+  <div class="submit-banner">
+    <div class="submit-text">
+      <h3>Know About an Event?</h3>
+      <p>Submit tryouts, clinics, camps, or any girls hockey event in the Tampa Bay area and we'll add it to the hub.</p>
+    </div>
+    <a href="mailto:youremail@example.com?subject=Girls Hockey Event Submission" class="submit-btn">+ Submit an Event</a>
+  </div>
+</main>
+
+<footer>
+  Tampa Bay Girls Hockey Hub &nbsp;·&nbsp; Updated regularly &nbsp;·&nbsp; Not affiliated with any rink or organization
+</footer>
+
+<script>
+const events = [
+  {
+    type: "tryout",
+    name: "Lightning Girls Hockey Tryouts",
+    org: "Tampa Bay Lightning Girls Hockey",
+    date: "April 20, 2025",
+    time: "9:00 AM – 12:00 PM",
+    location: "AMALIE Arena Practice Facility, Tampa",
+    ageGroup: "10U / 12U / 14U",
+    cost: "$25",
+    spotsLeft: 18,
+    spotsLow: false,
+    link: "#"
+  },
+  {
+    type: "clinic",
+    name: "Spring Skills Clinic – Shooting & Skating",
+    org: "Tampa Bay Hockey Academy",
+    date: "April 26, 2025",
+    time: "10:00 AM – 12:00 PM",
+    location: "Ice Sports Forum, Brandon",
+    ageGroup: "All Ages",
+    cost: "$40",
+    spotsLeft: 7,
+    spotsLow: true,
+    link: "#"
+  },
+  {
+    type: "instructional",
+    name: "Girls Learn to Play Hockey",
+    org: "USA Hockey / Ice Sports Forum",
+    date: "May 3, 2025",
+    time: "8:00 AM – 10:00 AM",
+    location: "Ice Sports Forum, Brandon",
+    ageGroup: "Ages 6–12",
+    cost: "Free",
+    spotsLeft: 30,
+    spotsLow: false,
+    link: "#"
+  },
+  {
+    type: "camp",
+    name: "Girls Summer Hockey Camp",
+    org: "Clearwater Ice Arena",
+    date: "June 9–13, 2025",
+    time: "8:00 AM – 3:00 PM",
+    location: "Clearwater Ice Arena, Clearwater",
+    ageGroup: "10U – 16U",
+    cost: "$350",
+    spotsLeft: 12,
+    spotsLow: false,
+    link: "#"
+  },
+  {
+    type: "tournament",
+    name: "Sunshine State Invitational",
+    org: "Florida Amateur Hockey League",
+    date: "May 17–18, 2025",
+    time: "All Day",
+    location: "AdventHealth Skating Center, Tampa",
+    ageGroup: "12U / 14U / 16U",
+    cost: "Team Registration",
+    spotsLeft: null,
+    spotsLow: false,
+    link: "#"
+  },
+  {
+    type: "clinic",
+    name: "Goalie Development Clinic – Girls Only",
+    org: "Tampa Bay Goalie School",
+    date: "May 10, 2025",
+    time: "2:00 PM – 4:00 PM",
+    location: "UTSA Skating Center, St. Petersburg",
+    ageGroup: "12U – 18U Goalies",
+    cost: "$55",
+    spotsLeft: 4,
+    spotsLow: true,
+    link: "#"
+  },
+  {
+    type: "tryout",
+    name: "Clearwater Cyclones Girls Team Tryouts",
+    org: "Clearwater Cyclones Hockey",
+    date: "April 27, 2025",
+    time: "11:00 AM – 1:00 PM",
+    location: "Clearwater Ice Arena, Clearwater",
+    ageGroup: "14U / 16U",
+    cost: "$20",
+    spotsLeft: 22,
+    spotsLow: false,
+    link: "#"
+  },
+  {
+    type: "instructional",
+    name: "Friday Night Girls Stick & Puck",
+    org: "AdventHealth Skating Center",
+    date: "Every Friday through May",
+    time: "7:30 PM – 9:00 PM",
+    location: "AdventHealth Skating Center, Tampa",
+    ageGroup: "All Levels Welcome",
+    cost: "$15/session",
+    spotsLeft: null,
+    spotsLow: false,
+    link: "#"
+  }
+];
+
+let currentFilter = "all";
+
+function stripeClass(type) {
+  return `stripe-${type}`;
+}
+
+function tagClass(type) {
+  return `tag-${type}`;
+}
+
+function typeLabel(type) {
+  const labels = { tryout: "Tryout", clinic: "Clinic", instructional: "Instructional", tournament: "Tournament", camp: "Camp" };
+  return labels[type] || type;
+}
+
+function renderEvents(filter) {
+  const grid = document.getElementById("eventGrid");
+  const noResults = document.getElementById("noResults");
+  const countEl = document.getElementById("eventCount");
+  const filtered = filter === "all" ? events : events.filter(e => e.type === filter);
+
+  grid.innerHTML = "";
+
+  if (filtered.length === 0) {
+    noResults.classList.add("visible");
+    countEl.textContent = "";
+    return;
+  }
+
+  noResults.classList.remove("visible");
+  countEl.textContent = `${filtered.length} event${filtered.length !== 1 ? "s" : ""}`;
+
+  filtered.forEach(ev => {
+    const spotsHTML = ev.spotsLeft !== null
+      ? `<span class="spots-left ${ev.spotsLow ? 'spots-low' : ''}">${ev.spotsLow ? '⚠ ' : ''}${ev.spotsLeft} spots left</span>`
+      : `<span class="spots-left">Open registration</span>`;
+
+    const costHTML = ev.cost === "Free"
+      ? `<span class="cost-free">Free</span>`
+      : `<span class="cost-paid">${ev.cost}</span>`;
+
+    const card = document.createElement("div");
+    card.className = "event-card";
+    card.dataset.type = ev.type;
+    card.innerHTML = `
+      <div class="card-stripe ${stripeClass(ev.type)}"></div>
+      <div class="card-body">
+        <div class="card-type-row">
+          <span class="event-type-tag ${tagClass(ev.type)}">${typeLabel(ev.type)}</span>
+          <span class="age-group">${ev.ageGroup}</span>
+        </div>
+        <div class="event-name">${ev.name}</div>
+        <div class="event-org">${ev.org}</div>
+        <div class="event-meta">
+          <div class="meta-row"><span class="meta-icon">📅</span><span>${ev.date}</span></div>
+          <div class="meta-row"><span class="meta-icon">🕐</span><span>${ev.time}</span></div>
+          <div class="meta-row"><span class="meta-icon">📍</span><span>${ev.location}</span></div>
+          <div class="meta-row"><span class="meta-icon">💰</span>${costHTML}</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="${ev.link}" class="reg-btn" target="_blank">Register →</a>
+        ${spotsHTML}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function filterEvents(type, btn) {
+  currentFilter = type;
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderEvents(type);
+}
+
+renderEvents("all");
+</script>
+</body>
+</html>
