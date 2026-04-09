@@ -321,12 +321,13 @@
 
   .event-name {
     font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 800;
     color: var(--blue-deep);
-    line-height: 1.2;
+    line-height: 1.25;
     text-transform: uppercase;
     letter-spacing: 0.3px;
+    margin-bottom: 5px;
   }
 
   .age-pill {
@@ -640,123 +641,15 @@
 
 <script>
 const events = [
-  {
-    type: "tryout",
-    name: "Girls Jr. Lightning Travel Hockey – 2026-27 Season",
-    org: "Tampa Bay Lightning Girls Hockey",
-    date: "Dates TBA – Contact for Info",
-    time: "TBA",
-    location: "AdventHealth Center Ice, Wesley Chapel",
-    ageGroup: "10U / 12U / 14U / 16U / 19U",
-    cost: "TBA",
-    spotsLeft: null,
-    spotsLow: false,
-    link: "https://lightninghockeydevelopment.com/girlshockey/girlstravelhockey/"
-  },
-  {
-    type: "tryout",
-    name: "Tampa Bay Crunch Girls Tryouts – 2026-27 Season",
-    org: "Tampa Bay Crunch / AdventHealth Center Ice",
-    date: "Starting May 4, 2026",
-    time: "TBA – Check site for full schedule",
-    location: "AdventHealth Center Ice, Wesley Chapel",
-    ageGroup: "12UA / 14UA / 16UA",
-    cost: "TBA",
-    spotsLeft: null,
-    spotsLow: false,
-    link: "https://anc.apm.activecommunities.com/ahcenterice/activity/search?onlineSiteId=0&activity_select_param=2&activity_keyword=crunch+tryouts+girls&viewMode=list"
-  },
-  {
-    type: "tryout",
-    name: "Tampa Bay Hockey Club Fall Season Tryouts – 2026-27",
-    org: "Tampa Bay Hockey Club (TBHC)",
-    date: "Starting May 4, 2026",
-    time: "5:00 PM – 9:30 PM",
-    location: "Tampa Bay Skating Academy, Oldsmar",
-    ageGroup: "All Travel Levels",
-    cost: "TBA",
-    spotsLeft: null,
-    spotsLow: false,
-    link: "https://www.tampabayhc.com/"
-  },
-  {
-    type: "tryout",
-    name: "Tampa Bay Jr. Lightning Girls Tier 2 AA – 2026-27",
-    org: "Tampa Bay Jr. Lightning (New Program)",
-    date: "Dates TBA – Contact for Info",
-    time: "TBA",
-    location: "AdventHealth Center Ice, Wesley Chapel",
-    ageGroup: "10U / 12U / 14U / 16U / 19U",
-    cost: "TBA",
-    spotsLeft: null,
-    spotsLow: false,
-    link: "https://www.nhl.com/lightning/community/jr-lightning"
-  },
-  {
-    type: "instructional",
-    name: "Girls Only Learn to Play Hockey",
-    org: "Tampa Bay Lightning Hockey Development",
-    date: "Ongoing – Multiple Sessions",
-    time: "Various",
-    location: "Power Pole Arena (XTRA Ice), Tampa",
-    ageGroup: "Ages 5–10",
-    cost: "$299 (includes full gear)",
-    spotsLeft: null,
-    spotsLow: false,
-    link: "https://lightninghockeydevelopment.com/girlshockey/girlsonlylearntoplay/"
-  },
-  {
-    type: "instructional",
-    name: "Girls Learn to Play 201",
-    org: "Tampa Bay Lightning – Coached by Kelley Steadman",
-    date: "Ongoing – 8-Week Program",
-    time: "Various",
-    location: "Lightning Made Training Center, Tampa",
-    ageGroup: "Ages 5–12",
-    cost: "Contact for pricing",
-    spotsLeft: null,
-    spotsLow: false,
-    link: "https://lightninghockeydevelopment.com/girlshockey/girlsonlylearntoplay/"
-  },
-  {
-    type: "instructional",
-    name: "Girls High School Hockey – Spring League",
-    org: "Tampa Bay Lightning Hockey Development",
-    date: "Eval Skates March 12 · Season ends June 2026",
-    time: "1 practice + 1 game per week",
-    location: "Clearwater Ice Arena + other Tampa Bay rinks",
-    ageGroup: "Girls Grades 8–12",
-    cost: "TBA",
-    spotsLeft: null,
-    spotsLow: false,
-    link: "https://lightninghockeydevelopment.com/girlshockey/girlshighschool/"
-  },
-  {
-    type: "clinic",
-    name: "Girls Only Ice Hockey Camps & Clinics",
-    org: "Tampa Bay Lightning Hockey Development",
-    date: "Various – Check site for current schedule",
-    time: "Various",
-    location: "Multiple Tampa Bay Rinks",
-    ageGroup: "All Ages & Levels",
-    cost: "Varies by session",
-    spotsLeft: null,
-    spotsLow: false,
-    link: "https://lightninghockeydevelopment.com/ice-hockey-programs/icehockeycampsclinics/"
-  },
-  {
-    type: "tournament",
-    name: "Tampa Memorial Cup – Girls Divisions",
-    org: "TCS Hockey",
-    date: "May 22–25, 2026",
-    time: "All Day",
-    location: "AdventHealth Center Ice, Wesley Chapel",
-    ageGroup: "10U / 12U / 14U / 16U / 19U",
-    cost: "$2,000–$2,450 per team",
-    spotsLeft: null,
-    spotsLow: false,
-    link: "https://www.tcshockey.com/events/tampa-memorial-cup"
-  }
+  { type: "tryout", name: "Girls Jr. Lightning Tryouts", org: "Tampa Bay Lightning Girls Hockey", date: "Dates TBA – Contact for Info", time: "TBA", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "10U / 12U / 14U / 16U / 19U", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlstravelhockey/" },
+  { type: "tryout", name: "TB Crunch Girls Tryouts", org: "Tampa Bay Crunch / AdventHealth Center Ice", date: "Starting May 4, 2026", time: "TBA – Check site for schedule", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "12UA / 14UA / 16UA", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://anc.apm.activecommunities.com/ahcenterice/activity/search?onlineSiteId=0&activity_select_param=2&activity_keyword=crunch+tryouts+girls&viewMode=list" },
+  { type: "tryout", name: "TBHC Fall Season Tryouts", org: "Tampa Bay Hockey Club", date: "Starting May 4, 2026", time: "5:00 PM – 9:30 PM", location: "Tampa Bay Skating Academy, Oldsmar", ageGroup: "All Travel Levels", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://www.tampabayhc.com/" },
+  { type: "tryout", name: "Jr. Lightning Girls AA Tryouts", org: "Tampa Bay Jr. Lightning", date: "Dates TBA – Contact for Info", time: "TBA", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "10U / 12U / 14U / 16U / 19U", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://www.nhl.com/lightning/community/jr-lightning" },
+  { type: "instructional", name: "Girls Only Learn to Play", org: "Tampa Bay Lightning Hockey Development", date: "Ongoing – Multiple Sessions", time: "Various", location: "Power Pole Arena, Tampa", ageGroup: "Ages 5–10", cost: "$299 (includes full gear)", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlsonlylearntoplay/" },
+  { type: "instructional", name: "Girls Learn to Play 201", org: "Lightning – Coach Kelley Steadman", date: "Ongoing – 8-Week Program", time: "Various", location: "Lightning Made Training Center, Tampa", ageGroup: "Ages 5–12", cost: "Contact for pricing", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlsonlylearntoplay/" },
+  { type: "instructional", name: "Girls High School Hockey – Spring", org: "Tampa Bay Lightning Hockey Development", date: "Evals March 12 · Season ends June 2026", time: "1 practice + 1 game per week", location: "Clearwater Ice Arena + Tampa Bay rinks", ageGroup: "Girls Grades 8–12", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlshighschool/" },
+  { type: "clinic", name: "Girls Only Camps & Clinics", org: "Tampa Bay Lightning Hockey Development", date: "Various – Check site for schedule", time: "Various", location: "Multiple Tampa Bay Rinks", ageGroup: "All Ages & Levels", cost: "Varies by session", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/ice-hockey-programs/icehockeycampsclinics/" },
+  { type: "tournament", name: "Tampa Memorial Cup", org: "TCS Hockey", date: "May 22–25, 2026", time: "All Day", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "10U / 12U / 14U / 16U / 19U", cost: "$2,000–$2,450 per team", spotsLeft: null, spotsLow: false, link: "https://www.tcshockey.com/events/tampa-memorial-cup" }
 ];
 
 function typeLabel(type) {
