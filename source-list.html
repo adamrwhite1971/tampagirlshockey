@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tampa Bay Girls Hockey – Source List</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2330;
+    --border: #30363d;
+    --accent: #2f81f7;
+    --accent2: #f78166;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --purple: #a371f7;
+    --teal: #39d353;
+    --text: #e6edf3;
+    --muted: #7d8590;
+    --dim: #484f58;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    min-height: 100vh;
+    padding: 0 0 80px;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .topbar-icon {
+    font-size: 20px;
+  }
+
+  .topbar-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--text);
+    letter-spacing: 0.3px;
+  }
+
+  .topbar-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .badge-count {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    background: var(--accent);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+  }
+
+  /* LAYOUT */
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 0;
+  }
+
+  /* INTRO */
+  .intro-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+  }
+
+  .intro-block h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .intro-block p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 720px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-rink    { background: var(--accent); }
+  .dot-org     { background: var(--green); }
+  .dot-league  { background: var(--purple); }
+  .dot-social  { background: var(--accent2); }
+  .dot-tourney { background: var(--yellow); }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .section-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-left: auto;
+    letter-spacing: 0.5px;
+  }
+
+  /* SOURCE GRID */
+  .source-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 12px;
+  }
+
+  .source-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .source-card:hover {
+    border-color: var(--dim);
+    background: var(--surface2);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .source-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .priority-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .p-high   { background: rgba(63,185,80,0.15); color: var(--green); border: 1px solid rgba(63,185,80,0.3); }
+  .p-med    { background: rgba(210,153,34,0.15); color: var(--yellow); border: 1px solid rgba(210,153,34,0.3); }
+  .p-watch  { background: rgba(47,129,247,0.12); color: var(--accent); border: 1px solid rgba(47,129,247,0.3); }
+
+  .source-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+
+  .source-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .source-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 4px 8px;
+    background: rgba(47,129,247,0.08);
+    border: 1px solid rgba(47,129,247,0.2);
+    border-radius: 4px;
+    transition: background 0.12s;
+  }
+
+  .source-link:hover { background: rgba(47,129,247,0.18); }
+  .source-link.ig { color: var(--accent2); background: rgba(247,129,102,0.08); border-color: rgba(247,129,102,0.2); }
+  .source-link.ig:hover { background: rgba(247,129,102,0.18); }
+  .source-link.fb { color: #58a6ff; background: rgba(88,166,255,0.08); border-color: rgba(88,166,255,0.2); }
+  .source-link.fb:hover { background: rgba(88,166,255,0.18); }
+
+  .check-tip {
+    margin-top: 10px;
+    padding: 8px 10px;
+    background: rgba(255,255,255,0.03);
+    border-left: 2px solid var(--dim);
+    border-radius: 0 4px 4px 0;
+    font-size: 11px;
+    color: var(--dim);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* CADENCE TABLE */
+  .cadence-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .cadence-table th {
+    text-align: left;
+    padding: 10px 14px;
+    background: var(--surface2);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cadence-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid rgba(48,54,61,0.5);
+    vertical-align: top;
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .cadence-table tr:last-child td { border-bottom: none; }
+  .cadence-table tr:hover td { background: var(--surface2); }
+
+  .freq {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .freq-monthly { background: rgba(63,185,80,0.12); color: var(--green); }
+  .freq-seasonal { background: rgba(163,113,247,0.12); color: var(--purple); }
+  .freq-annual { background: rgba(210,153,34,0.12); color: var(--yellow); }
+
+  .action-note {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* FOOTER NOTE */
+  .footer-note {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-top: 8px;
+  }
+
+  .footer-note h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-note ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer-note li {
+    font-size: 13px;
+    color: var(--muted);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .footer-note li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+  }
+
+  @media (max-width: 600px) {
+    .topbar { padding: 12px 16px; }
+    .page { padding: 24px 16px 0; }
+    .source-grid { grid-template-columns: 1fr; }
+    .cadence-table { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-icon">🏒</span>
+    <div>
+      <div class="topbar-title">Tampa Bay Girls Hockey — Source List</div>
+      <div class="topbar-sub">RESEARCH REFERENCE · LAST UPDATED APRIL 2026</div>
+    </div>
+  </div>
+  <span class="badge-count">29 Sources</span>
+</div>
+
+<div class="page">
+
+  <div class="intro-block">
+    <h2>How to Use This</h2>
+    <p>This is the master list of every website, social account, league, and organization to check when doing a monthly event sweep for the Tampa Bay Girls Hockey Hub. Sources are grouped by type with check frequency and specific tips for what to look for at each one. High priority sources post the most events and should never be skipped.</p>
+  </div>
+
+  <!-- ICE RINKS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-dot dot-rink"></div>
+      <div class="section-title">Ice Rinks</div>
+      <span class="section-note">PRIMARY EVENT VENUES</span>
+    </div>
+    <div class="source-grid">
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">AdventHealth Center Ice</div>
+          <span class="priority-tag p-high">HIGH</span>
+        </div>
+        <div class="source-desc">Largest ice complex in the Southeast — 5 rinks in Wesley Chapel. Home of Tampa Bay Crunch. Hosts the most girls hockey activity of any single facility in the region, including tryouts, tournaments, and clinics.</div>
+        <div class="source-links">
+          <a href="https://ahcenterice.com" class="source-link" target="_blank">↗ ahcenterice.com</a>
+          <a href="https://www.facebook.com/AHCenterIce" class="source-link fb" target="_blank">FB</a>
+          <a href="https://www.instagram.com/ahcenterice" class="source-link ig" target="_blank">IG</a>
+        </div>
+        <div class="check-tip">Check: Events calendar page + Facebook for clinic/tryout posts between rink orgs.</div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">TGH Ice Plex (Brandon)</div>
+          <span class="priority-tag p-high">HIGH</span>
+        </div>
+        <div class="source-desc">Official training facility of the Tampa Bay Lightning. Two-sheet rink in Brandon offering youth leagues, camps, clinics, and instructional programs. Formerly Brandon Ice Sports Forum.</div>
+        <div class="source-links">
+          <a href="https://tghiceplex.com" class="source-link" target="_blank">↗ tghiceplex.com</a>
+          <a href="https://www.facebook.com/TGHIcePlex" class="source-link fb" target="_blank">FB</a>
+          <a href="https://www.instagram.com/tghiceplex" class="source-link ig" target="_blank">IG</a>
+        </div>
+        <div class="check-tip">Check: Clinics/Camps page. Lightning Made programs often show here first.</div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Power Pole Arena (XTRA Ice)</div>
+          <span class="priority-tag p-high">HIGH</span>
+        </div>
+        <div class="source-desc">Tampa rink and primary home for Lightning Girls Only programming — Learn to Play, LTP 201, rec leagues, and ball hockey. Coached by Kelley Steadman and Lightning staff. Girls-focused pipeline starts here.</div>
+        <div class="source-links">
+          <a href="https://www.xtraicer.com" class="source-link" target="_blank">↗ xtraicer.com</a>
+          <a href="https://lightninghockeydevelopment.com/girlshockey/" class="source-link" target="_blank">↗ Lightning Girls Page</a>
+        </div>
+        <div class="check-tip">Check: Lightning Hockey Development girls page — new sessions and LTP 201 dates post there before the rink site.</div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Clearwater Ice Arena</div>
+          <span class="priority-tag p-med">MED</span>
+        </div>
+        <div class="source-desc">13940 Icot Blvd, Clearwater. Used for Lightning Girls High School Hockey evaluation skates (starts March) and occasional clinics. Part of Tampa Bay Ice / TBSA family.</div>
+        <div class="source-links">
+          <a href="http://tampabayice.com" class="source-link" target="_blank">↗ tampabayice.com</a>
+        </div>
+        <div class="check-tip">Check: Tampa Bay Ice camps page. Girls HS Hockey eval skates run here each spring.</div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Tampa Bay Skating Academy – Oldsmar</div>
+          <span class="priority-tag p-med">MED</span>
+        </div>
+        <div class="source-desc">255 Forest Lakes Blvd, Oldsmar. Home base for Tampa Bay Hockey Club (TBHC). Hosts youth leagues, tryouts, and instructional programs. Part of Tampa Bay Ice family.</div>
+        <div class="source-links">
+          <a href="http://tampabayice.com" class="source-link" target="_blank">↗ tampabayice.com</a>
+        </div>
+        <div class="check-tip">Check: TBHC website for tryout/event dates since they use this rink.</div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Lightning Made Training Center</div>
+          <span class="priority-tag p-high">HIGH</span>
+        </div>
+        <div class="source-desc">6910 Asphalt Ave, Tampa. Indoor facility with synthetic ice and ball hockey rinks. Core hub for Lightning Girls Only pipeline including ball hockey leagues, Learn to Skate, and beginner/rec level girls teams. Nearly 200 girls participate.</div>
+        <div class="source-links">
+          <a href="https://lightninghockeydevelopment.com/hockey-facilities/trainingcenter/" class="source-link" target="_blank">↗ LMTC Page</a>
+        </div>
+        <div class="check-tip">Check: Lightning Hockey Development site for new session registration. Kelley Steadman posts updates directly.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ORGANIZATIONS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-dot dot-org"></div>
+      <div class="section-title">Teams & Organizations</div>
+      <span class="section-note">TRYOUTS · ROSTERS · PROGRAMS</span>
+    </div>
+    <div class="source-grid">
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Tampa Bay Lightning – Girls Hockey Dev</div>
+          <span class="priority-tag p-high">HIGH</span>
+        </div>
+        <div class="source-desc">The central hub for all Lightning-run girls programs: Learn to Play, LTP 201, Girls Only Camps/Clinics, Rec Leagues, Girls Jr. Lightning travel teams (10U–19U AA), and Girls High School Hockey. Coordinated by Kelley Steadman.</div>
+        <div class="source-links">
+          <a href="https://lightninghockeydevelopment.com/girlshockey/" class="source-link" target="_blank">↗ Girls Page</a>
+          <a href="https://lightninghockeydevelopment.com/ice-hockey-programs/icehockeycampsclinics/" class="source-link" target="_blank">↗ Girls Camps/Clinics</a>
+        </div>
+        <div class="check-tip">Contact: Kelley Steadman — KSteadman@viniksportsgroup.com. Best single point of contact in Tampa Bay girls hockey.</div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Tampa Bay Crunch (Girls)</div>
+          <span class="priority-tag p-high">HIGH</span>
+        </div>
+        <div class="source-desc">Tier 2 travel program based at AdventHealth Center Ice. Fields Girls 12UA, 14UA, and 16UA teams. Now partnered with Tampa Bay Lightning. 2026-27 Girls tryouts beginning May, exact dates posted to FB/Instagram first.</div>
+        <div class="source-links">
+          <a href="https://ahcenterice.com" class="source-link" target="_blank">↗ AHCI Site</a>
+          <a href="https://www.facebook.com/TBCrunchHockey/" class="source-link fb" target="_blank">FB</a>
+          <a href="https://www.instagram.com/tampabay_crunch/" class="source-link ig" target="_blank">IG @tampabay_crunch</a>
+        </div>
+        <div class="check-tip">Social media posts tryout info weeks before the website updates. Follow both FB and IG closely in March–May.</div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Tampa Bay Hockey Club (TBHC)</div>
+          <span class="priority-tag p-med">MED</span>
+        </div>
+        <div class="source-desc">Tier 2 org based in Oldsmar (TBSA rink) since 1987. Co-ed but runs girls-eligible teams. 2026-27 Fall Season Tryouts begin May 4. Worth monitoring for girls-eligible slots and any girls-only events.</div>
+        <div class="source-links">
+          <a href="https://www.tampabayhc.com/" class="source-link" target="_blank">↗ tampabayhc.com</a>
+          <a href="https://www.instagram.com/tampabayhockeyclub/" class="source-link ig" target="_blank">IG @tampabayhockeyclub</a>
+        </div>
+        <div class="check-tip">Check the "Upcoming Events" section on homepage — it updates with tryout windows.</div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Tampa Bay Jr. Lightning (Girls Tier 2 AA)</div>
+          <span class="priority-tag p-high">HIGH</span>
+        </div>
+        <div class="source-desc">Brand new program launched Feb 2026 — the Lightning's first direct operation of a competitive travel program. Girls Tier 2 AA overseen by Aaron Humphrey and Kelley Steadman. Training at AdventHealth Center Ice. Tryout dates for girls TBD.</div>
+        <div class="source-links">
+          <a href="https://www.nhl.com/lightning/community/jr-lightning" class="source-link" target="_blank">↗ Jr. Lightning Page</a>
+          <a href="https://www.facebook.com/TBJrLightningGirlsTeam/" class="source-link fb" target="_blank">FB Girls Team</a>
+          <a href="https://www.facebook.com/groups/tbjlgirlshockey/" class="source-link fb" target="_blank">FB Group</a>
+        </div>
+        <div class="check-tip">Very new — monitor closely. Girls details described as "coming soon" as of April 2026. Email: JrLightningGirlsHockey@gmail.com</div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Florida Alliance Girls Hockey</div>
+          <span class="priority-tag p-med">MED</span>
+        </div>
+        <div class="source-desc">Statewide elite/national-bound girls teams at 10U–19U, operated under SAHOF. Includes Tampa Bay Lightning Elite Girls team. Tracks team rosters, schedules, and standings for top-tier Florida girls hockey.</div>
+        <div class="source-links">
+          <a href="https://floridaalliancegirlshockey.com/" class="source-link" target="_blank">↗ floridaalliancegirlshockey.com</a>
+        </div>
+        <div class="check-tip">Check for tryouts posted by individual teams — Lightning Elite Girls is the main Tampa affiliate.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LEAGUES & GOVERNING BODIES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-dot dot-league"></div>
+      <div class="section-title">Leagues & Governing Bodies</div>
+      <span class="section-note">SCHEDULES · STANDINGS · STATE EVENTS</span>
+    </div>
+    <div class="source-grid">
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">SAHOF – Statewide Amateur Hockey of Florida</div>
+          <span class="priority-tag p-high">HIGH</span>
+        </div>
+        <div class="source-desc">Governing body for all youth and adult amateur hockey in Florida. Manages SFHL (boys) and SFGHL (girls). Posts state championship qualifications, district events, and girls hockey development news.</div>
+        <div class="source-links">
+          <a href="https://www.sahofhockey.org/sfhl" class="source-link" target="_blank">↗ sahofhockey.org</a>
+          <a href="https://www.sahofhockey.org/page/show/2120198-girls" class="source-link" target="_blank">↗ Girls Page</a>
+        </div>
+        <div class="check-tip">Check Girls page for state championship qualifications, SGHL updates, and Florida Alliance news.</div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Southern Girls Hockey League (SGHL)</div>
+          <span class="priority-tag p-med">MED</span>
+        </div>
+        <div class="source-desc">First girls-only youth hockey league in the Southeast. Divisions at 8/10U dev, 12U, 16U, and 19U. Florida teams compete against Carolina, Georgia, Tennessee. Tampa Lightning teams play in this league.</div>
+        <div class="source-links">
+          <a href="https://www.sahofhockey.org/page/show/2120198-girls" class="source-link" target="_blank">↗ via SAHOF</a>
+          <a href="mailto:southerngirlshockeyleague@gmail.com" class="source-link" target="_blank">✉ Email League</a>
+        </div>
+        <div class="check-tip">Contact directly for schedule releases and new team announcements each season.</div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">USA Hockey – Southeastern District</div>
+          <span class="priority-tag p-watch">WATCH</span>
+        </div>
+        <div class="source-desc">National governing body. Runs Learn to Play programs, national championship qualifications, and player development events. Tampa Bay is in the Southeastern District.</div>
+        <div class="source-links">
+          <a href="https://www.usahockey.com" class="source-link" target="_blank">↗ usahockey.com</a>
+          <a href="https://www.learntoplay.nhl.com/locations/lightning/" class="source-link" target="_blank">↗ Lightning LTP</a>
+        </div>
+        <div class="check-tip">Check for national camp/clinic announcements and any Southeastern District girls events.</div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Statewide Florida Girls Hockey League (SFGHL)</div>
+          <span class="priority-tag p-watch">WATCH</span>
+        </div>
+        <div class="source-desc">Tier 2 AA and A-level girls league operated by SAHOF. Tampa teams play here. Schedules and standings available through MYHockey Rankings and SFHL Hockey site.</div>
+        <div class="source-links">
+          <a href="https://www.sfhlhockey.com/" class="source-link" target="_blank">↗ sfhlhockey.com</a>
+        </div>
+        <div class="check-tip">Check for new season scheduling and Tampa-area girls team rosters each August.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOURNAMENTS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-dot dot-tourney"></div>
+      <div class="section-title">Tournament Organizers</div>
+      <span class="section-note">GIRLS DIVISIONS CONFIRMED</span>
+    </div>
+    <div class="source-grid">
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">TCS Hockey – Tampa Memorial Cup</div>
+          <span class="priority-tag p-high">HIGH</span>
+        </div>
+        <div class="source-desc">Annual tournament at AdventHealth Center Ice. 2026 dates: May 22–25. Girls divisions at 10U, 12U, 14U, and 16U/19U. One of the biggest Tampa-hosted girls tournaments of the year.</div>
+        <div class="source-links">
+          <a href="https://www.tcshockey.com/events/tampa-memorial-cup" class="source-link" target="_blank">↗ Tampa Memorial Cup</a>
+          <a href="https://www.tcshockey.com/" class="source-link" target="_blank">↗ tcshockey.com</a>
+        </div>
+        <div class="check-tip">Check annually in Jan–Feb for registration open dates. Girls divisions always included.</div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">National Girls Hockey League (NGHL)</div>
+          <span class="priority-tag p-med">MED</span>
+        </div>
+        <div class="source-desc">Tampa Bay Crunch is a member. Posts schedules, standings, and league tournament info for girls travel teams across the Southeast.</div>
+        <div class="source-links">
+          <a href="https://nghlhockey.com/organizations/tampa-bay-crunch/" class="source-link" target="_blank">↗ Crunch at NGHL</a>
+          <a href="https://nghlhockey.com" class="source-link" target="_blank">↗ nghlhockey.com</a>
+        </div>
+        <div class="check-tip">Check for schedule releases at the start of each season and any showcase/tournament events hosted in Florida.</div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Hockey Finder – Tournament Listings</div>
+          <span class="priority-tag p-watch">WATCH</span>
+        </div>
+        <div class="source-desc">Aggregator for youth hockey tournaments across the US. Search by state/region to catch any girls tournaments in Florida not promoted by individual orgs.</div>
+        <div class="source-links">
+          <a href="https://www.hockeyfinder.com/tournaments/country/US" class="source-link" target="_blank">↗ hockeyfinder.com</a>
+        </div>
+        <div class="check-tip">Filter by Florida + girls. Good for catching regional events that route through Tampa-area rinks.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SOCIAL MEDIA -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-dot dot-social"></div>
+      <div class="section-title">Social Media Accounts to Follow</div>
+      <span class="section-note">WHERE EVENTS LIVE FIRST</span>
+    </div>
+    <div class="source-grid">
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">AdventHealth Center Ice</div>
+          <span class="priority-tag p-high">HIGH</span>
+        </div>
+        <div class="source-desc">Posts Girls Crunch tryout dates, clinic announcements, and rink events weeks before the website updates. Highest signal-to-noise ratio of any rink social.</div>
+        <div class="source-links">
+          <a href="https://www.facebook.com/AHCenterIce" class="source-link fb" target="_blank">FB: AHCenterIce</a>
+          <a href="https://www.instagram.com/ahcenterice" class="source-link ig" target="_blank">IG: @ahcenterice</a>
+        </div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Tampa Bay Crunch</div>
+          <span class="priority-tag p-high">HIGH</span>
+        </div>
+        <div class="source-desc">Primary source for Girls Crunch tryout graphics, team announcements, and season news. Instagram posts tryout dates with full details including birth year eligibility.</div>
+        <div class="source-links">
+          <a href="https://www.facebook.com/TBCrunchHockey/" class="source-link fb" target="_blank">FB: TBCrunchHockey</a>
+          <a href="https://www.instagram.com/tampabay_crunch/" class="source-link ig" target="_blank">IG: @tampabay_crunch</a>
+        </div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Tampa Bay Jr. Lightning Girls</div>
+          <span class="priority-tag p-high">HIGH</span>
+        </div>
+        <div class="source-desc">Brand new Facebook group and page for the Lightning's new Tier 2 AA girls program. Watch closely — tryout announcements and program details will appear here first.</div>
+        <div class="source-links">
+          <a href="https://www.facebook.com/TBJrLightningGirlsTeam/" class="source-link fb" target="_blank">FB: TBJrLightningGirlsTeam</a>
+          <a href="https://www.facebook.com/groups/tbjlgirlshockey/" class="source-link fb" target="_blank">FB Group</a>
+        </div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Lightning Hockey Development</div>
+          <span class="priority-tag p-high">HIGH</span>
+        </div>
+        <div class="source-desc">Official Lightning community hockey accounts. Post Girls Only camp/clinic openings, Learn to Play registration, and Girls Rec League session dates. Often the first public announcement of new programs.</div>
+        <div class="source-links">
+          <a href="https://www.facebook.com/LightningHockeyDevelopment" class="source-link fb" target="_blank">FB: LightningHockeyDevelopment</a>
+          <a href="https://www.instagram.com/lightninghockeydev/" class="source-link ig" target="_blank">IG: @lightninghockeydev</a>
+        </div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">TGH Ice Plex / Brandon</div>
+          <span class="priority-tag p-med">MED</span>
+        </div>
+        <div class="source-desc">Posts Lightning Made camp dates, clinics, and special hockey events. Girls Only summer camps often announced here before the main Lightning Dev site updates.</div>
+        <div class="source-links">
+          <a href="https://www.facebook.com/TGHIcePlex" class="source-link fb" target="_blank">FB: TGHIcePlex</a>
+          <a href="https://www.instagram.com/tghiceplex" class="source-link ig" target="_blank">IG: @tghiceplex</a>
+        </div>
+      </div>
+
+      <div class="source-card">
+        <div class="card-top">
+          <div class="source-name">Tampa Bay Hockey Club</div>
+          <span class="priority-tag p-med">MED</span>
+        </div>
+        <div class="source-desc">Posts tryout windows and season announcements for TBHC teams based at TBSA Oldsmar. Smaller following but consistent updates during tryout season.</div>
+        <div class="source-links">
+          <a href="https://www.instagram.com/tampabayhockeyclub/" class="source-link ig" target="_blank">IG: @tampabayhockeyclub</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CHECK CADENCE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-dot dot-rink" style="background: var(--teal)"></div>
+      <div class="section-title">Recommended Check Cadence</div>
+      <span class="section-note">SWEEP SCHEDULE</span>
+    </div>
+    <table class="cadence-table">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Frequency</th>
+          <th>What to look for</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>TB Crunch IG/FB + AHCI IG/FB</td>
+          <td><span class="freq freq-monthly">MONTHLY</span></td>
+          <td class="action-note">Girls tryout graphics, clinic announcements, Girls Crunch team news</td>
+        </tr>
+        <tr>
+          <td>Lightning Hockey Development site + Girls page</td>
+          <td><span class="freq freq-monthly">MONTHLY</span></td>
+          <td class="action-note">New Girls Only camp/clinic registration, LTP 201 sessions, Rec League opens</td>
+        </tr>
+        <tr>
+          <td>Jr. Lightning Girls FB page + group</td>
+          <td><span class="freq freq-monthly">MONTHLY</span></td>
+          <td class="action-note">Program announcements, tryout dates (new program — high activity expected)</td>
+        </tr>
+        <tr>
+          <td>TGH Ice Plex website + social</td>
+          <td><span class="freq freq-monthly">MONTHLY</span></td>
+          <td class="action-note">Girls Only summer camp dates, Lightning Made clinic openings</td>
+        </tr>
+        <tr>
+          <td>TBHC website + IG</td>
+          <td><span class="freq freq-monthly">MONTHLY</span></td>
+          <td class="action-note">Fall tryout windows (April–May), spring tournament team sign-ups</td>
+        </tr>
+        <tr>
+          <td>SAHOF Girls page + SFGHL</td>
+          <td><span class="freq freq-seasonal">SEASONAL</span></td>
+          <td class="action-note">State championship qualifications (Jan), new season scheduling (Aug)</td>
+        </tr>
+        <tr>
+          <td>TCS Hockey – Tampa Memorial Cup</td>
+          <td><span class="freq freq-annual">ANNUAL</span></td>
+          <td class="action-note">Registration opens Jan–Feb each year, girls divisions always included</td>
+        </tr>
+        <tr>
+          <td>Florida Alliance Girls Hockey</td>
+          <td><span class="freq freq-seasonal">SEASONAL</span></td>
+          <td class="action-note">Team-level tryout posts (Lightning Elite Girls) around April–May</td>
+        </tr>
+        <tr>
+          <td>Hockey Finder – FL Tournaments</td>
+          <td><span class="freq freq-seasonal">SEASONAL</span></td>
+          <td class="action-note">Check quarterly for any new girls tournaments routing through Tampa-area rinks</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- GAPS / INTEL NOTES -->
+  <div class="footer-note">
+    <h3>Known Gaps — Sources Still Needed</h3>
+    <ul>
+      <li>Clearwater Ice Arena does not maintain a reliable events calendar — best reached by phone (727) 536-5843 or through Tampa Bay Ice email</li>
+      <li>Power Pole Arena event listings are inconsistent online — Lightning Dev site and Kelley Steadman are more reliable than the rink itself</li>
+      <li>Small-group private clinics and stick-and-puck sessions are almost exclusively posted to Facebook community groups — identify and join Tampa Bay youth hockey parent groups</li>
+      <li>Ellenton Ice and Sports Complex (Manatee County) is close enough to draw Tampa families for clinics — worth adding to future sweeps</li>
+      <li>Building a community submission form on the site is the best long-term fix for catching social-media-only events</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
