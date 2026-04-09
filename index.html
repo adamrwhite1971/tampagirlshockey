@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tampa Girls Hockey</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --blue: #0057b8;
@@ -25,555 +26,556 @@
     --orange: #d46a00;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Barlow', sans-serif;
-    background: var(--off-white);
-    color: var(--text);
-    min-height: 100vh;
-  }
-
-  /* HERO HEADER */
-  header {
-    background: var(--blue-deep);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background-image: url('top-hero-hockey.jpg');
-    background-size: cover;
-    background-position: center 20%;
-    background-repeat: no-repeat;
-  }
-
-  .blue-line {
-    position: absolute;
-    left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--gold), var(--blue-light), transparent);
-    opacity: 0.8;
-    bottom: 0;
-  }
-
-  .hero-inner {
-    position: relative;
-    z-index: 2;
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 48px 24px 40px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 32px;
-  }
-
-  .hero-eyebrow {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .hero-eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 28px;
-    height: 3px;
-    background: var(--gold);
-    border-radius: 2px;
-  }
-
-  .hero-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(42px, 7vw, 80px);
-    font-weight: 900;
-    color: var(--white);
-    line-height: 0.95;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    margin-bottom: 16px;
-  }
-
-  .hero-title span {
-    color: var(--gold);
-    display: block;
-  }
-
-  .hero-desc {
-    font-size: 16px;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.6;
-    max-width: 460px;
-  }
-
-  .hero-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    text-align: center;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 16px;
-    padding: 28px 32px;
-    min-width: 180px;
-  }
-
-  .stat-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 52px;
-    font-weight: 900;
-    color: var(--white);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    margin-top: 4px;
-  }
-
-  .stat-divider {
-    width: 32px;
-    height: 2px;
-    background: var(--blue);
-    margin: 12px auto;
-    border-radius: 2px;
-  }
-
-  /* FILTER BAR */
-  .filter-bar {
-    background: var(--blue);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    box-shadow: 0 4px 20px rgba(0,57,130,0.3);
-  }
-
-  .filter-inner {
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: stretch;
-    gap: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .filter-inner::-webkit-scrollbar { display: none; }
-
-  .filter-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
-    display: flex;
-    align-items: center;
-    padding-right: 16px;
-    white-space: nowrap;
-    border-right: 1px solid rgba(255,255,255,0.15);
-    margin-right: 4px;
-  }
-
-  .filter-btn {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 16px 20px;
-    background: transparent;
-    border: none;
-    color: rgba(255,255,255,0.65);
-    cursor: pointer;
-    transition: all 0.15s;
-    white-space: nowrap;
-    border-bottom: 3px solid transparent;
-    position: relative;
-  }
-
-  .filter-btn:hover { color: var(--white); }
-  .filter-btn.active {
-    color: var(--white);
-    border-bottom-color: var(--gold);
-  }
-
-  /* MAIN */
-  main {
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 40px 24px 80px;
-  }
-
-  .results-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 28px;
-    gap: 12px;
-  }
-
-  .results-heading {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 32px;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: var(--blue-deep);
-    letter-spacing: 0.5px;
-  }
-
-  .results-count {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    background: var(--ice);
-    padding: 6px 14px;
-    border-radius: 100px;
-  }
-
-  /* CARD GRID */
-  .event-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 20px;
-  }
-
-  .event-card {
-    background: var(--white);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1.5px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
-  }
-
-  .event-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0,57,184,0.12);
-    border-color: var(--blue-light);
-  }
-
-  .card-header {
-    padding: 18px 20px 14px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 12px;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-  }
-
-  .card-accent {
-    position: absolute;
-    top: 0; left: 0;
-    width: 4px;
-    height: 100%;
-    border-radius: 0;
-  }
-
-  .accent-tryout      { background: var(--red); }
-  .accent-clinic      { background: var(--blue); }
-  .accent-instructional { background: var(--green); }
-  .accent-tournament  { background: var(--orange); }
-  .accent-camp        { background: var(--purple); }
-
-  .card-header-left {
-    padding-left: 12px;
-    flex: 1;
-  }
-
-  .event-type-tag {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 4px;
-    display: inline-block;
-    margin-bottom: 8px;
-  }
-
-  .tag-tryout       { background: #fff0ee; color: var(--red); }
-  .tag-clinic       { background: #e8f2ff; color: var(--blue-dark); }
-  .tag-instructional{ background: #eaf5ee; color: var(--green); }
-  .tag-tournament   { background: #fff4e0; color: var(--orange); }
-  .tag-camp         { background: #f2eaff; color: var(--purple); }
-
-  .event-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--blue-deep);
-    line-height: 1.2;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-  }
-
-  .age-pill {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--muted);
-    background: var(--sky);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 4px 12px;
-    white-space: nowrap;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .card-body {
-    padding: 16px 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .event-org {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--blue);
-    margin-bottom: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .meta-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .meta-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 14px;
-    color: var(--text);
-    line-height: 1.4;
-  }
-
-  .meta-icon-wrap {
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
-    background: var(--sky);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 13px;
-  }
-
-  .meta-text { padding-top: 5px; }
-
-  .cost-free { color: var(--green); font-weight: 700; }
-
-  .card-footer {
-    padding: 14px 20px;
-    background: var(--off-white);
-    border-top: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .reg-btn {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 10px 22px;
-    background: var(--blue);
-    color: var(--white);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: background 0.15s;
-  }
-
-  .reg-btn:hover { background: var(--blue-dark); }
-
-  .spots-badge {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .spots-low { color: var(--red); }
-
-  /* NO RESULTS */
-  .no-results {
-    display: none;
-    text-align: center;
-    padding: 80px 24px;
-    color: var(--muted);
-  }
-
-  .no-results.visible { display: block; }
-
-  .no-results-icon {
-    font-size: 48px;
-    margin-bottom: 16px;
-  }
-
-  .no-results h3 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 28px;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: var(--blue-deep);
-    margin-bottom: 8px;
-  }
-
-  /* SUBMIT BANNER */
-  .submit-banner {
-    margin-top: 56px;
-    background: var(--blue-deep);
-    border-radius: 16px;
-    padding: 40px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 32px;
-    flex-wrap: wrap;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .submit-banner::before {
-    content: '';
-    position: absolute;
-    right: -40px; top: -40px;
-    width: 240px; height: 240px;
-    border-radius: 50%;
-    border: 40px solid rgba(255,255,255,0.04);
-  }
-
-  .submit-banner::after {
-    content: '';
-    position: absolute;
-    right: 60px; bottom: -60px;
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    border: 30px solid rgba(255,255,255,0.03);
-  }
-
-  .submit-text { position: relative; z-index: 1; }
-
-  .submit-text h3 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 36px;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: var(--white);
-    letter-spacing: 0.5px;
-    margin-bottom: 6px;
-  }
-
-  .submit-text p {
-    font-size: 15px;
-    color: rgba(255,255,255,0.6);
-    max-width: 400px;
-    line-height: 1.6;
-  }
-
-  .submit-btn {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 17px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 16px 36px;
-    background: var(--gold);
-    color: var(--blue-deep);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: opacity 0.15s;
-    position: relative;
-    z-index: 1;
-    white-space: nowrap;
-  }
-
-  .submit-btn:hover { opacity: 0.88; }
-
-  /* FOOTER */
-  footer {
-    background: var(--blue-deep);
-    border-top: 3px solid var(--blue);
-    padding: 28px 24px;
-    text-align: center;
-  }
-
-  .footer-inner {
-    max-width: 1140px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .footer-logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: var(--white);
-    letter-spacing: 1px;
-  }
-
-  .footer-logo span { color: var(--gold); }
-
-  .footer-note {
-    font-size: 12px;
-    color: rgba(255,255,255,0.35);
-    letter-spacing: 0.5px;
-  }
-
-  @media (max-width: 700px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-stats { display: none; }
-    .event-grid { grid-template-columns: 1fr; }
-    .submit-banner { padding: 28px 24px; }
-    .footer-inner { justify-content: center; text-align: center; }
-  }
+- { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+font-family: ‘Montserrat’, sans-serif;
+background: var(–off-white);
+color: var(–text);
+min-height: 100vh;
+}
+
+/* HERO HEADER */
+header {
+background: var(–blue-deep);
+position: relative;
+overflow: hidden;
+}
+
+.hero-bg {
+position: absolute;
+inset: 0;
+background-image: url(‘top-hero-hockey.jpg’);
+background-size: cover;
+background-position: center 20%;
+background-repeat: no-repeat;
+}
+
+.blue-line {
+position: absolute;
+left: 0; right: 0;
+height: 4px;
+background: linear-gradient(90deg, var(–gold), var(–blue-light), transparent);
+opacity: 0.8;
+bottom: 0;
+}
+
+.hero-inner {
+position: relative;
+z-index: 2;
+max-width: 1140px;
+margin: 0 auto;
+padding: 48px 24px 40px;
+display: grid;
+grid-template-columns: 1fr auto;
+align-items: center;
+gap: 32px;
+}
+
+.hero-eyebrow {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 13px;
+font-weight: 700;
+letter-spacing: 4px;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 10px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.hero-eyebrow::before {
+content: ‘’;
+display: inline-block;
+width: 28px;
+height: 3px;
+background: var(–gold);
+border-radius: 2px;
+}
+
+.hero-title {
+font-family: ‘Montserrat’, sans-serif;
+font-size: clamp(42px, 7vw, 80px);
+font-weight: 900;
+color: var(–white);
+line-height: 0.95;
+text-transform: uppercase;
+letter-spacing: -1px;
+margin-bottom: 16px;
+}
+
+.hero-title span {
+color: var(–gold);
+display: block;
+}
+
+.hero-desc {
+font-size: 16px;
+color: rgba(255,255,255,0.65);
+line-height: 1.6;
+max-width: 460px;
+}
+
+.hero-stats {
+display: flex;
+flex-direction: column;
+gap: 3px;
+text-align: center;
+background: rgba(255,255,255,0.06);
+border: 1px solid rgba(255,255,255,0.12);
+border-radius: 16px;
+padding: 28px 32px;
+min-width: 180px;
+}
+
+.stat-num {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 52px;
+font-weight: 900;
+color: var(–white);
+line-height: 1;
+}
+
+.stat-label {
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: rgba(255,255,255,0.5);
+margin-top: 4px;
+}
+
+.stat-divider {
+width: 32px;
+height: 2px;
+background: var(–blue);
+margin: 12px auto;
+border-radius: 2px;
+}
+
+/* FILTER BAR */
+.filter-bar {
+background: var(–blue);
+position: sticky;
+top: 0;
+z-index: 50;
+box-shadow: 0 4px 20px rgba(0,57,130,0.3);
+}
+
+.filter-inner {
+max-width: 1140px;
+margin: 0 auto;
+padding: 0 24px;
+display: flex;
+align-items: stretch;
+gap: 0;
+overflow-x: auto;
+scrollbar-width: none;
+}
+
+.filter-inner::-webkit-scrollbar { display: none; }
+
+.filter-label {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: rgba(255,255,255,0.45);
+display: flex;
+align-items: center;
+padding-right: 16px;
+white-space: nowrap;
+border-right: 1px solid rgba(255,255,255,0.15);
+margin-right: 4px;
+}
+
+.filter-btn {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 15px;
+font-weight: 700;
+letter-spacing: 1px;
+text-transform: uppercase;
+padding: 16px 20px;
+background: transparent;
+border: none;
+color: rgba(255,255,255,0.65);
+cursor: pointer;
+transition: all 0.15s;
+white-space: nowrap;
+border-bottom: 3px solid transparent;
+position: relative;
+}
+
+.filter-btn:hover { color: var(–white); }
+.filter-btn.active {
+color: var(–white);
+border-bottom-color: var(–gold);
+}
+
+/* MAIN */
+main {
+max-width: 1140px;
+margin: 0 auto;
+padding: 40px 24px 80px;
+}
+
+.results-bar {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 28px;
+gap: 12px;
+}
+
+.results-heading {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 32px;
+font-weight: 800;
+text-transform: uppercase;
+color: var(–blue-deep);
+letter-spacing: 0.5px;
+}
+
+.results-count {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 14px;
+font-weight: 700;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–muted);
+background: var(–ice);
+padding: 6px 14px;
+border-radius: 100px;
+}
+
+/* CARD GRID */
+.event-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+gap: 20px;
+}
+
+.event-card {
+background: var(–white);
+border-radius: 12px;
+overflow: hidden;
+border: 1.5px solid var(–border);
+display: flex;
+flex-direction: column;
+transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+}
+
+.event-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 12px 40px rgba(0,57,184,0.12);
+border-color: var(–blue-light);
+}
+
+.card-header {
+padding: 18px 20px 14px;
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+gap: 12px;
+border-bottom: 1px solid var(–border);
+position: relative;
+}
+
+.card-accent {
+position: absolute;
+top: 0; left: 0;
+width: 4px;
+height: 100%;
+border-radius: 0;
+}
+
+.accent-tryout      { background: var(–red); }
+.accent-clinic      { background: var(–blue); }
+.accent-instructional { background: var(–green); }
+.accent-tournament  { background: var(–orange); }
+.accent-camp        { background: var(–purple); }
+
+.card-header-left {
+padding-left: 12px;
+flex: 1;
+}
+
+.event-type-tag {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 2.5px;
+text-transform: uppercase;
+padding: 3px 10px;
+border-radius: 4px;
+display: inline-block;
+margin-bottom: 8px;
+}
+
+.tag-tryout       { background: #fff0ee; color: var(–red); }
+.tag-clinic       { background: #e8f2ff; color: var(–blue-dark); }
+.tag-instructional{ background: #eaf5ee; color: var(–green); }
+.tag-tournament   { background: #fff4e0; color: var(–orange); }
+.tag-camp         { background: #f2eaff; color: var(–purple); }
+
+.event-name {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 20px;
+font-weight: 800;
+color: var(–blue-deep);
+line-height: 1.2;
+text-transform: uppercase;
+letter-spacing: 0.3px;
+}
+
+.age-pill {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 1px;
+text-transform: uppercase;
+color: var(–muted);
+background: var(–sky);
+border: 1px solid var(–border);
+border-radius: 100px;
+padding: 4px 12px;
+white-space: nowrap;
+flex-shrink: 0;
+margin-top: 2px;
+}
+
+.card-body {
+padding: 16px 20px;
+flex: 1;
+display: flex;
+flex-direction: column;
+gap: 0;
+}
+
+.event-org {
+font-size: 13px;
+font-weight: 600;
+color: var(–blue);
+margin-bottom: 14px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
+.meta-list {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.meta-item {
+display: flex;
+align-items: flex-start;
+gap: 10px;
+font-size: 14px;
+color: var(–text);
+line-height: 1.4;
+}
+
+.meta-icon-wrap {
+width: 28px;
+height: 28px;
+border-radius: 6px;
+background: var(–sky);
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+font-size: 13px;
+}
+
+.meta-text { padding-top: 5px; }
+
+.cost-free { color: var(–green); font-weight: 700; }
+
+.card-footer {
+padding: 14px 20px;
+background: var(–off-white);
+border-top: 1px solid var(–border);
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 12px;
+}
+
+.reg-btn {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 15px;
+font-weight: 800;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+padding: 10px 22px;
+background: var(–blue);
+color: var(–white);
+border: none;
+border-radius: 8px;
+cursor: pointer;
+text-decoration: none;
+display: inline-block;
+transition: background 0.15s;
+}
+
+.reg-btn:hover { background: var(–blue-dark); }
+
+.spots-badge {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 1px;
+text-transform: uppercase;
+color: var(–muted);
+}
+
+.spots-low { color: var(–red); }
+
+/* NO RESULTS */
+.no-results {
+display: none;
+text-align: center;
+padding: 80px 24px;
+color: var(–muted);
+}
+
+.no-results.visible { display: block; }
+
+.no-results-icon {
+font-size: 48px;
+margin-bottom: 16px;
+}
+
+.no-results h3 {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 28px;
+font-weight: 800;
+text-transform: uppercase;
+color: var(–blue-deep);
+margin-bottom: 8px;
+}
+
+/* SUBMIT BANNER */
+.submit-banner {
+margin-top: 56px;
+background: var(–blue-deep);
+border-radius: 16px;
+padding: 40px 48px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 32px;
+flex-wrap: wrap;
+position: relative;
+overflow: hidden;
+}
+
+.submit-banner::before {
+content: ‘’;
+position: absolute;
+right: -40px; top: -40px;
+width: 240px; height: 240px;
+border-radius: 50%;
+border: 40px solid rgba(255,255,255,0.04);
+}
+
+.submit-banner::after {
+content: ‘’;
+position: absolute;
+right: 60px; bottom: -60px;
+width: 160px; height: 160px;
+border-radius: 50%;
+border: 30px solid rgba(255,255,255,0.03);
+}
+
+.submit-text { position: relative; z-index: 1; }
+
+.submit-text h3 {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 36px;
+font-weight: 900;
+text-transform: uppercase;
+color: var(–white);
+letter-spacing: 0.5px;
+margin-bottom: 6px;
+}
+
+.submit-text p {
+font-size: 15px;
+color: rgba(255,255,255,0.6);
+max-width: 400px;
+line-height: 1.6;
+}
+
+.submit-btn {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 17px;
+font-weight: 800;
+letter-spacing: 2px;
+text-transform: uppercase;
+padding: 16px 36px;
+background: var(–gold);
+color: var(–blue-deep);
+border: none;
+border-radius: 10px;
+cursor: pointer;
+text-decoration: none;
+display: inline-block;
+transition: opacity 0.15s;
+position: relative;
+z-index: 1;
+white-space: nowrap;
+}
+
+.submit-btn:hover { opacity: 0.88; }
+
+/* FOOTER */
+footer {
+background: var(–blue-deep);
+border-top: 3px solid var(–blue);
+padding: 28px 24px;
+text-align: center;
+}
+
+.footer-inner {
+max-width: 1140px;
+margin: 0 auto;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 16px;
+flex-wrap: wrap;
+}
+
+.footer-logo {
+font-family: ‘Montserrat’, sans-serif;
+font-size: 20px;
+font-weight: 900;
+text-transform: uppercase;
+color: var(–white);
+letter-spacing: 1px;
+}
+
+.footer-logo span { color: var(–gold); }
+
+.footer-note {
+font-size: 12px;
+color: rgba(255,255,255,0.35);
+letter-spacing: 0.5px;
+}
+
+@media (max-width: 700px) {
+.hero-inner { grid-template-columns: 1fr; }
+.hero-stats { display: none; }
+.event-grid { grid-template-columns: 1fr; }
+.submit-banner { padding: 28px 24px; }
+.footer-inner { justify-content: center; text-align: center; }
+}
 </style>
+
 </head>
 <body>
 
@@ -841,5 +843,6 @@ function filterEvents(type, btn) {
 document.getElementById("statEvents").textContent = events.length;
 renderEvents("all");
 </script>
+
 </body>
 </html>
