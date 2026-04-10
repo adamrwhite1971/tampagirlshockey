@@ -566,7 +566,31 @@
     letter-spacing: 0.5px;
   }
 
-  @media (max-width: 700px) {
+  .event-card.past {
+    opacity: 0.55;
+    filter: grayscale(40%);
+  }
+
+  .past-badge {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: #e8e8e8;
+    color: #888;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 3px 8px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  .reg-btn.past-btn {
+    background: #aaa;
+    cursor: default;
+    pointer-events: none;
+  }
     .hero-inner { grid-template-columns: 1fr; }
     .hero-stats { display: none; }
     .event-grid { grid-template-columns: 1fr; }
@@ -627,7 +651,7 @@
       <h3>Know About an Event?</h3>
       <p>Submit any girls hockey tryout, clinic, camp, or tournament in the Tampa Bay area and we'll add it to the hub.</p>
     </div>
-    <a href="mailto:youremail@example.com?subject=Girls Hockey Event Submission" class="submit-btn">+ Submit an Event</a>
+    <a href="https://forms.gle/yyH7CXM9aaxb5Zp58" class="submit-btn" target="_blank">+ Submit an Event</a>
   </div>
 </main>
 
@@ -640,16 +664,29 @@
 
 <script>
 const events = [
-  { type: "tryout", name: "Girls Jr. Lightning Tryouts", org: "Tampa Bay Lightning Girls Hockey", date: "Dates TBA – Contact for Info", time: "TBA", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "10U / 12U / 14U / 16U / 19U", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlstravelhockey/" },
-  { type: "tryout", name: "TB Crunch Girls Tryouts", org: "Tampa Bay Crunch / AdventHealth Center Ice", date: "Starting May 4, 2026", time: "TBA – Check site for schedule", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "12UA / 14UA / 16UA", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://anc.apm.activecommunities.com/ahcenterice/activity/search?onlineSiteId=0&activity_select_param=2&activity_keyword=crunch+tryouts+girls&viewMode=list" },
-  { type: "tryout", name: "TBHC Fall Season Tryouts", org: "Tampa Bay Hockey Club", date: "Starting May 4, 2026", time: "5:00 PM – 9:30 PM", location: "Tampa Bay Skating Academy, Oldsmar", ageGroup: "All Travel Levels", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://www.tampabayhc.com/" },
-  { type: "tryout", name: "Jr. Lightning Girls AA Tryouts", org: "Tampa Bay Jr. Lightning", date: "Dates TBA – Contact for Info", time: "TBA", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "10U / 12U / 14U / 16U / 19U", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://www.nhl.com/lightning/community/jr-lightning" },
-  { type: "instructional", name: "Girls Only Learn to Play", org: "Tampa Bay Lightning Hockey Development", date: "Ongoing – Multiple Sessions", time: "Various", location: "Power Pole Arena, Tampa", ageGroup: "Ages 5–10", cost: "$299 (includes full gear)", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlsonlylearntoplay/" },
-  { type: "instructional", name: "Girls Learn to Play 201", org: "Lightning – Coach Kelley Steadman", date: "Ongoing – 8-Week Program", time: "Various", location: "Lightning Made Training Center, Tampa", ageGroup: "Ages 5–12", cost: "Contact for pricing", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlsonlylearntoplay/" },
-  { type: "instructional", name: "Girls High School Hockey – Spring", org: "Tampa Bay Lightning Hockey Development", date: "Evals March 12 · Season ends June 2026", time: "1 practice + 1 game per week", location: "Clearwater Ice Arena + Tampa Bay rinks", ageGroup: "Girls Grades 8–12", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlshighschool/" },
-  { type: "clinic", name: "Girls Only Camps & Clinics", org: "Tampa Bay Lightning Hockey Development", date: "Various – Check site for schedule", time: "Various", location: "Multiple Tampa Bay Rinks", ageGroup: "All Ages & Levels", cost: "Varies by session", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/ice-hockey-programs/icehockeycampsclinics/" },
-  { type: "tournament", name: "Tampa Memorial Cup", org: "TCS Hockey", date: "May 22–25, 2026", time: "All Day", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "10U / 12U / 14U / 16U / 19U", cost: "$2,000–$2,450 per team", spotsLeft: null, spotsLow: false, link: "https://www.tcshockey.com/events/tampa-memorial-cup" }
+  { type: "tryout", name: "Girls Jr. Lightning Tryouts", org: "Tampa Bay Lightning Girls Hockey", date: "Dates TBA – Contact for Info", time: "TBA", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "10U / 12U / 14U / 16U / 19U", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlstravelhockey/", endDate: null },
+  { type: "tryout", name: "TB Crunch Girls Tryouts", org: "Tampa Bay Crunch / AdventHealth Center Ice", date: "Starting May 4, 2026", time: "TBA – Check site for schedule", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "12UA / 14UA / 16UA", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://anc.apm.activecommunities.com/ahcenterice/activity/search?onlineSiteId=0&activity_select_param=2&activity_keyword=crunch+tryouts+girls&viewMode=list", endDate: null },
+  { type: "tryout", name: "Florida Wild Girls Tryouts", org: "Florida Wild / AdventHealth Center Ice", date: "March 26, 2026", time: "10U/12U and 14U/16U – see site", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "10U / 12U / 14U / 16U", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://anc.apm.activecommunities.com/ahcenterice/activity/search?onlineSiteId=0&activity_select_param=2&activity_keyword=wild&viewMode=list", endDate: "2026-03-26" },
+  { type: "tryout", name: "TBHC Fall Season Tryouts", org: "Tampa Bay Hockey Club", date: "Starting May 4, 2026", time: "5:00 PM – 9:30 PM", location: "Tampa Bay Skating Academy, Oldsmar", ageGroup: "All Travel Levels", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://www.tampabayhc.com/", endDate: null },
+  { type: "tryout", name: "Jr. Lightning Girls AA Tryouts", org: "Tampa Bay Jr. Lightning", date: "Dates TBA – Contact for Info", time: "TBA", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "10U / 12U / 14U / 16U / 19U", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://www.nhl.com/lightning/community/jr-lightning", endDate: null },
+  { type: "instructional", name: "Girls Only Learn to Play", org: "Tampa Bay Lightning Hockey Development", date: "Ongoing – Multiple Sessions", time: "Various", location: "Power Pole Arena, Tampa", ageGroup: "Ages 5–10", cost: "$299 (includes full gear)", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlsonlylearntoplay/", endDate: null },
+  { type: "instructional", name: "Girls Learn to Play 201", org: "Lightning – Coach Kelley Steadman", date: "Ongoing – 8-Week Program", time: "Various", location: "Lightning Made Training Center, Tampa", ageGroup: "Ages 5–12", cost: "Contact for pricing", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlsonlylearntoplay/", endDate: null },
+  { type: "instructional", name: "Girls Rec League – 9U & 13U", org: "Tampa Bay Lightning Hockey Development", date: "Ongoing – 8-Week Seasons", time: "4v4 gameplay + championship week", location: "Power Pole Arena, Tampa", ageGroup: "9U / 13U", cost: "$800/year (2 seasons + 2 tournaments)", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlsrecleague/", endDate: null },
+  { type: "instructional", name: "Girls High School Hockey – Spring", org: "Tampa Bay Lightning Hockey Development", date: "Evals March 12 · Season ends June 2026", time: "1 practice + 1 game per week", location: "Clearwater Ice Arena + Tampa Bay rinks", ageGroup: "Girls Grades 8–12", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlshighschool/", endDate: "2026-06-30" },
+  { type: "clinic", name: "Girls Only Camps & Clinics", org: "Tampa Bay Lightning Hockey Development", date: "Various – Check site for schedule", time: "Various", location: "Multiple Tampa Bay Rinks", ageGroup: "All Ages & Levels", cost: "Varies by session", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/ice-hockey-programs/icehockeycampsclinics/", endDate: null },
+  { type: "clinic", name: "Sun Blades Spring Power Skating", org: "Sun Blades Hockey", date: "Spring 2026 – Check site for dates", time: "Various sessions", location: "Clearwater Ice Arena, Clearwater", ageGroup: "All Skill Levels", cost: "Contact for pricing", spotsLeft: null, spotsLow: false, link: "https://sunbladeshockey.com/schedule", endDate: null },
+  { type: "camp", name: "AHCI Hockey Camp – Spring Break", org: "AdventHealth Center Ice", date: "March 30 – April 3, 2026", time: "8:00 AM – 3:00 PM", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "8U – 14U", cost: "$475 skaters / $175 goalies", spotsLeft: null, spotsLow: false, link: "https://ahcenterice.com/icehockey-campsnclinics/", endDate: "2026-04-03" },
+  { type: "camp", name: "AHCI Summer Hockey Camps", org: "AdventHealth Center Ice", date: "Summer 2026 – Dates TBA", time: "8:00 AM – 3:00 PM", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "8U – 16U", cost: "$475 skaters / $175 goalies per week", spotsLeft: null, spotsLow: false, link: "https://ahcenterice.com/icehockey-campsnclinics/", endDate: null },
+  { type: "camp", name: "Lightning Made Girls Summer Camp", org: "Tampa Bay Lightning / TGH Ice Plex", date: "June 2026 – Dates TBA", time: "8:00 AM – 4:00 PM", location: "TGH Ice Plex, Brandon", ageGroup: "Ages 5–15 Girls Only", cost: "Contact Kelley Steadman", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/ice-hockey-programs/icecamps/", endDate: null },
+  { type: "tournament", name: "Tampa Memorial Cup – Girls Divisions", org: "TCS Hockey", date: "May 22–25, 2026", time: "All Day", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "10U / 12U / 14U / 16U / 19U", cost: "$2,000–$2,450 per team", spotsLeft: null, spotsLow: false, link: "https://www.tcshockey.com/events/tampa-memorial-cup", endDate: "2026-05-25" }
 ];
+
+function isPast(ev) {
+  if (!ev.endDate) return false;
+  const end = new Date(ev.endDate);
+  end.setHours(23, 59, 59);
+  return end < new Date();
+}
 
 function typeLabel(type) {
   return { tryout: "Tryout", clinic: "Clinic", instructional: "Instructional", tournament: "Tournament", camp: "Camp" }[type] || type;
@@ -660,7 +697,15 @@ function renderEvents(filter) {
   const noResults = document.getElementById("noResults");
   const countEl = document.getElementById("eventCount");
   const statEl = document.getElementById("statEvents");
-  const filtered = filter === "all" ? events : events.filter(e => e.type === filter);
+  let filtered = filter === "all" ? events : events.filter(e => e.type === filter);
+
+  // Sort: upcoming first, past last
+  filtered = [...filtered].sort((a, b) => {
+    const aPast = isPast(a), bPast = isPast(b);
+    if (aPast && !bPast) return 1;
+    if (!aPast && bPast) return -1;
+    return 0;
+  });
 
   grid.innerHTML = "";
 
@@ -675,16 +720,20 @@ function renderEvents(filter) {
   if (statEl) statEl.textContent = events.length;
 
   filtered.forEach(ev => {
-    const spotsHTML = ev.spotsLeft !== null
-      ? `<span class="spots-badge ${ev.spotsLow ? 'spots-low' : ''}">${ev.spotsLow ? '⚠ ' : ''}${ev.spotsLeft} spots left</span>`
-      : `<span class="spots-badge">Open registration</span>`;
+    const past = isPast(ev);
+
+    const spotsHTML = past
+      ? `<span class="past-badge">Event Passed</span>`
+      : ev.spotsLeft !== null
+        ? `<span class="spots-badge ${ev.spotsLow ? 'spots-low' : ''}">${ev.spotsLow ? '⚠ ' : ''}${ev.spotsLeft} spots left</span>`
+        : `<span class="spots-badge">Open registration</span>`;
 
     const costHTML = ev.cost === "Free"
       ? `<span class="cost-free">Free</span>`
       : ev.cost;
 
     const card = document.createElement("div");
-    card.className = "event-card";
+    card.className = `event-card${past ? ' past' : ''}`;
     card.innerHTML = `
       <div class="card-header">
         <div class="card-accent accent-${ev.type}"></div>
@@ -716,7 +765,7 @@ function renderEvents(filter) {
         </div>
       </div>
       <div class="card-footer">
-        <a href="${ev.link}" class="reg-btn" target="_blank">Register →</a>
+        <a href="${ev.link}" class="${past ? 'reg-btn past-btn' : 'reg-btn'}" target="_blank">${past ? 'View Info' : 'Register →'}</a>
         ${spotsHTML}
       </div>
     `;
