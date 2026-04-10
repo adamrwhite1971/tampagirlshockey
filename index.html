@@ -438,7 +438,132 @@
     white-space: nowrap;
   }
 
-  .reg-btn:hover { background: var(--blue-dark); }
+  .filter-btn.rinks-btn {
+    border-left: 1px solid rgba(255,255,255,0.15);
+    margin-left: 8px;
+    padding-left: 24px;
+    color: var(--gold);
+  }
+
+  .filter-btn.rinks-btn.active { color: var(--white); background: rgba(245,197,24,0.2); border-bottom-color: var(--gold); }
+
+  /* RINKS SECTION */
+  #rinksSection { display: none; }
+  #eventsSection { display: block; }
+
+  .rinks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .rink-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+
+  .rink-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,57,184,0.12);
+  }
+
+  .rink-card-top {
+    background: var(--blue-deep);
+    padding: 24px 22px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rink-card-top::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    border: 20px solid rgba(255,255,255,0.04);
+  }
+
+  .rink-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 4px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .rink-location {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    position: relative;
+    z-index: 1;
+  }
+
+  .rink-card-body {
+    padding: 16px 20px;
+  }
+
+  .rink-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .rink-phone {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .rink-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .social-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 7px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+  }
+
+  .social-btn:hover { opacity: 0.82; }
+  .social-btn.web  { background: var(--blue); color: #fff; }
+  .social-btn.fb   { background: #1877f2; color: #fff; }
+  .social-btn.ig   { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+  .social-btn.x    { background: #000; color: #fff; }
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 9px 14px;
+    background: #1877f2;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+  }
+
+  .fb-btn:hover { opacity: 0.85; }
 
   .spots-badge {
     font-family: 'Montserrat', sans-serif;
@@ -679,17 +804,19 @@
 <div class="filter-bar">
   <div class="filter-inner">
     <span class="filter-label">Show</span>
-    <button class="filter-btn active" onclick="filterEvents('all', this)">All Events</button>
+    <button class="filter-btn active" onclick="showSection('events', this)">All Events</button>
     <button class="filter-btn" onclick="filterEvents('tryout', this)">Tryouts</button>
     <button class="filter-btn" onclick="filterEvents('clinic', this)">Clinics</button>
     <button class="filter-btn" onclick="filterEvents('instructional', this)">Instructional</button>
     <button class="filter-btn" onclick="filterEvents('icetime', this)">Ice Time</button>
     <button class="filter-btn" onclick="filterEvents('tournament', this)">Tournaments</button>
     <button class="filter-btn" onclick="filterEvents('camp', this)">Camps</button>
+    <button class="filter-btn rinks-btn" onclick="showSection('rinks', this)">Rinks</button>
   </div>
 </div>
 
 <main>
+<div id="eventsSection">
   <div class="results-bar">
     <div class="results-heading">Upcoming Events</div>
     <div class="results-count" id="eventCount"></div>
@@ -705,6 +832,102 @@
     <h3>No events found</h3>
     <p>Try a different filter or check back soon — new events are added regularly.</p>
   </div>
+</div>
+
+<div id="rinksSection">
+  <div class="results-bar">
+    <div class="results-heading">Tampa Bay Rinks</div>
+    <div class="results-count">5 Rinks</div>
+  </div>
+  <div class="rinks-grid">
+
+    <div class="rink-card">
+      <div class="rink-card-top">
+        <div class="rink-name">AdventHealth Center Ice</div>
+        <div class="rink-location">3173 Cypress Ridge Blvd, Wesley Chapel, FL 33544</div>
+      </div>
+      <div class="rink-card-body">
+        <p class="rink-desc">Largest ice complex in the Southeast — 5 rinks under one roof. Home of Tampa Bay Crunch girls travel program. Hosts the most girls hockey events of any Tampa Bay facility.</p>
+        <div class="rink-phone">📞 (813) 803-7372</div>
+        <div class="rink-socials">
+          <a href="https://ahcenterice.com" class="social-btn web" target="_blank">Website</a>
+          <a href="https://www.facebook.com/AHCenterIce/" class="social-btn fb" target="_blank">Facebook</a>
+          <a href="https://www.instagram.com/ahcenterice/" class="social-btn ig" target="_blank">Instagram</a>
+          <a href="https://x.com/AHCenterIce" class="social-btn x" target="_blank">X</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rink-card">
+      <div class="rink-card-top">
+        <div class="rink-name">TGH Ice Plex</div>
+        <div class="rink-location">10222 Elizabeth Place, Brandon, FL 33619</div>
+      </div>
+      <div class="rink-card-body">
+        <p class="rink-desc">Official training facility of the Tampa Bay Lightning. Two NHL-regulation rinks. Home of Lightning Made Girls Summer Camp. Youth hockey, clinics, and public skating.</p>
+        <div class="rink-phone">📞 (813) 684-7825</div>
+        <div class="rink-socials">
+          <a href="https://tghiceplex.com" class="social-btn web" target="_blank">Website</a>
+          <a href="https://www.facebook.com/IcePlexBrandon/" class="social-btn fb" target="_blank">Facebook</a>
+          <a href="https://www.facebook.com/TGHIcePlexYouthHockey/" class="social-btn fb" target="_blank">FB Youth Hockey</a>
+          <a href="https://www.instagram.com/tgh_iceplex/" class="social-btn ig" target="_blank">Instagram</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rink-card">
+      <div class="rink-card-top">
+        <div class="rink-name">Power Pole Arena (XTRA Ice)</div>
+        <div class="rink-location">6910 Asphalt Ave, Tampa, FL 33614</div>
+      </div>
+      <div class="rink-card-body">
+        <p class="rink-desc">Primary home for Lightning Girls Only programs — Learn to Play, LTP 201, Girls Rec League, and Ball Hockey. Coached by Kelley Steadman and Lightning staff. Nearly 200 girls participate.</p>
+        <div class="rink-phone">📞 (813) 724-0900</div>
+        <div class="rink-socials">
+          <a href="https://xtraicehockey.org" class="social-btn web" target="_blank">Website</a>
+          <a href="https://www.facebook.com/PowerPoleArena/" class="social-btn fb" target="_blank">Facebook</a>
+          <a href="https://www.instagram.com/powerpolearena/" class="social-btn ig" target="_blank">Instagram</a>
+          <a href="https://www.instagram.com/xtraicehockey/" class="social-btn ig" target="_blank">IG XTRA Ice</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rink-card">
+      <div class="rink-card-top">
+        <div class="rink-name">Clearwater Ice Arena</div>
+        <div class="rink-location">13940 Icot Blvd, Clearwater, FL 33760</div>
+      </div>
+      <div class="rink-card-body">
+        <p class="rink-desc">Home of Clearwater Ice Storm and Clearwater Cyclones travel teams. Used for Lightning Girls High School Hockey evaluation skates. 70+ adult hockey teams. Daily public skating.</p>
+        <div class="rink-phone">📞 (727) 536-5843</div>
+        <div class="rink-socials">
+          <a href="http://tampabayice.com" class="social-btn web" target="_blank">Website</a>
+          <a href="https://www.facebook.com/ClearwaterIce/" class="social-btn fb" target="_blank">Facebook</a>
+          <a href="https://www.instagram.com/clearwater.ice.arena/" class="social-btn ig" target="_blank">Instagram</a>
+          <a href="https://www.instagram.com/clwicestorm/" class="social-btn ig" target="_blank">IG Ice Storm</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rink-card">
+      <div class="rink-card-top">
+        <div class="rink-name">Tampa Bay Skating Academy – Oldsmar</div>
+        <div class="rink-location">255 Forest Lakes Blvd, Oldsmar, FL 34677</div>
+      </div>
+      <div class="rink-card-body">
+        <p class="rink-desc">Florida's first twin ice rink. Home base for Tampa Bay Hockey Club (TBHC). Two NHL-regulation rinks offering youth leagues, tryouts, and instructional programs.</p>
+        <div class="rink-phone">📞 (813) 854-4010</div>
+        <div class="rink-socials">
+          <a href="http://tampabayice.com" class="social-btn web" target="_blank">Website</a>
+          <a href="https://www.facebook.com/TBSkating/" class="social-btn fb" target="_blank">Facebook</a>
+          <a href="https://www.instagram.com/tampabayskatingacademy/" class="social-btn ig" target="_blank">Instagram</a>
+          <a href="https://x.com/tbskating" class="social-btn x" target="_blank">X</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
   <div class="submit-banner">
     <div class="submit-text">
@@ -739,11 +962,11 @@ const events = [
   { type: "camp", name: "AHCI Summer Hockey Camps", org: "AdventHealth Center Ice", date: "Summer 2026 – Dates TBA", time: "8:00 AM – 3:00 PM", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "8U – 16U", cost: "$475 skaters / $175 goalies per week", spotsLeft: null, spotsLow: false, link: "https://ahcenterice.com/icehockey-campsnclinics/", endDate: null },
   { type: "camp", name: "Lightning Made Girls Summer Camp", org: "Tampa Bay Lightning / TGH Ice Plex", date: "June 2026 – Dates TBA", time: "8:00 AM – 4:00 PM", location: "TGH Ice Plex, Brandon", ageGroup: "Ages 5–15 Girls Only", cost: "Contact Kelley Steadman", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/ice-hockey-programs/icecamps/", endDate: null },
   { type: "tournament", name: "Tampa Memorial Cup – Girls Divisions", org: "TCS Hockey", date: "May 22–25, 2026", time: "All Day", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "10U / 12U / 14U / 16U / 19U", cost: "$2,000–$2,450 per team", spotsLeft: null, spotsLow: false, link: "https://www.tcshockey.com/events/tampa-memorial-cup", endDate: "2026-05-25" },
-  { type: "icetime", name: "Clearwater Ice Arena – Skate & Shoot", org: "Tampa Bay Ice / Clearwater Ice Arena", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "Clearwater Ice Arena, 13940 Icot Blvd, Clearwater", ageGroup: "All Ages – Hockey Players", cost: "See calendar", spotsLeft: null, spotsLow: false, link: "https://apps.daysmartrecreation.com/dash/x/#/online/tampabayice/calendar?start=2026-04-09&end=2026-04-30&event_type=9", endDate: null },
-  { type: "icetime", name: "TBSA Oldsmar – Skate & Shoot", org: "Tampa Bay Ice / Tampa Bay Skating Academy", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "Tampa Bay Skating Academy, 255 Forest Lakes Blvd, Oldsmar", ageGroup: "All Ages – Hockey Players", cost: "See calendar", spotsLeft: null, spotsLow: false, link: "https://apps.daysmartrecreation.com/dash/x/#/online/tampabayice/calendar?start=2026-04-09&end=2026-04-30&event_type=9", endDate: null },
-  { type: "icetime", name: "AdventHealth Center Ice – Open Hockey", org: "AdventHealth Center Ice", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "AdventHealth Center Ice, 3173 Cypress Ridge Blvd, Wesley Chapel", ageGroup: "All Ages – Hockey Players", cost: "See site", spotsLeft: null, spotsLow: false, link: "https://anc.apm.activecommunities.com/ahcenterice/calendars", endDate: null },
-  { type: "icetime", name: "TGH Ice Plex – Stick & Puck", org: "TGH Ice Plex", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "TGH Ice Plex, 10222 Elizabeth Place, Brandon", ageGroup: "All Ages – Hockey Players", cost: "See site", spotsLeft: null, spotsLow: false, link: "https://tghiceplex.com/hockey/", endDate: null },
-  { type: "icetime", name: "Power Pole Arena – Girls Stick & Puck", org: "Power Pole Arena / XTRA Ice", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "Power Pole Arena, 6910 Asphalt Ave, Tampa", ageGroup: "Girls Only sessions available", cost: "See site", spotsLeft: null, spotsLow: false, link: "https://xtraicehockey.org", endDate: null }
+  { type: "icetime", name: "Clearwater Ice Arena – Skate & Shoot", org: "Tampa Bay Ice / Clearwater Ice Arena", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "Clearwater Ice Arena, 13940 Icot Blvd, Clearwater", ageGroup: "All Ages – Hockey Players", cost: "See calendar", spotsLeft: null, spotsLow: false, link: "https://apps.daysmartrecreation.com/dash/x/#/online/tampabayice/calendar?start=2026-04-09&end=2026-04-30&event_type=9", fblink: "https://www.facebook.com/ClearwaterIce/", endDate: null },
+  { type: "icetime", name: "TBSA Oldsmar – Skate & Shoot", org: "Tampa Bay Ice / Tampa Bay Skating Academy", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "Tampa Bay Skating Academy, 255 Forest Lakes Blvd, Oldsmar", ageGroup: "All Ages – Hockey Players", cost: "See calendar", spotsLeft: null, spotsLow: false, link: "https://apps.daysmartrecreation.com/dash/x/#/online/tampabayice/calendar?start=2026-04-09&end=2026-04-30&event_type=9", fblink: "https://www.facebook.com/TBSkating/", endDate: null },
+  { type: "icetime", name: "AdventHealth Center Ice – Open Hockey", org: "AdventHealth Center Ice", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "AdventHealth Center Ice, 3173 Cypress Ridge Blvd, Wesley Chapel", ageGroup: "All Ages – Hockey Players", cost: "See site", spotsLeft: null, spotsLow: false, link: "https://anc.apm.activecommunities.com/ahcenterice/calendars", fblink: "https://www.facebook.com/AHCenterIce/", endDate: null },
+  { type: "icetime", name: "TGH Ice Plex – Stick & Puck", org: "TGH Ice Plex", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "TGH Ice Plex, 10222 Elizabeth Place, Brandon", ageGroup: "All Ages – Hockey Players", cost: "See site", spotsLeft: null, spotsLow: false, link: "https://tghiceplex.com/hockey/", fblink: "https://www.facebook.com/IcePlexBrandon/", endDate: null },
+  { type: "icetime", name: "Power Pole Arena – Girls Stick & Puck", org: "Power Pole Arena / XTRA Ice", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "Power Pole Arena, 6910 Asphalt Ave, Tampa", ageGroup: "Girls Only sessions available", cost: "See site", spotsLeft: null, spotsLow: false, link: "https://xtraicehockey.org", fblink: "https://www.facebook.com/PowerPoleArena/", endDate: null }
 ];
 
 function isPast(ev) {
@@ -797,6 +1020,10 @@ function renderEvents(filter) {
       ? `<span class="cost-free">Free</span>`
       : ev.cost;
 
+    const fbHTML = ev.fblink
+      ? `<a href="${ev.fblink}" class="fb-btn" target="_blank">f Follow</a>`
+      : '';
+
     const card = document.createElement("div");
     card.className = `event-card${past ? ' past' : ''}`;
     card.innerHTML = `
@@ -831,6 +1058,7 @@ function renderEvents(filter) {
       </div>
       <div class="card-footer">
         <a href="${ev.link}" class="${past ? 'reg-btn past-btn' : 'reg-btn'}" target="_blank">${past ? 'View Info' : 'Register →'}</a>
+        ${fbHTML}
         ${spotsHTML}
       </div>
     `;
@@ -838,9 +1066,21 @@ function renderEvents(filter) {
   });
 }
 
+function showSection(section, btn) {
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  document.getElementById("eventsSection").style.display = section === "events" ? "block" : "none";
+  document.getElementById("rinksSection").style.display = section === "rinks" ? "block" : "none";
+  document.querySelector(".submit-banner").style.display = section === "rinks" ? "none" : "flex";
+  if (section === "events") renderEvents("all");
+}
+
 function filterEvents(type, btn) {
   document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
+  document.getElementById("eventsSection").style.display = "block";
+  document.getElementById("rinksSection").style.display = "none";
+  document.querySelector(".submit-banner").style.display = "flex";
   const banner = document.getElementById("icetimeBanner");
   if (type === "icetime") banner.classList.add("visible");
   else banner.classList.remove("visible");
