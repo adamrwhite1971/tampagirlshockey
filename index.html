@@ -418,6 +418,7 @@
     text-decoration: none;
     display: inline-block;
     transition: background 0.15s;
+    white-space: nowrap;
   }
 
   .reg-btn:hover { background: var(--blue-dark); }
@@ -591,6 +592,7 @@
     cursor: default;
     pointer-events: none;
   }
+  @media (max-width: 700px) {
     .hero-inner { grid-template-columns: 1fr; }
     .hero-stats { display: none; }
     .event-grid { grid-template-columns: 1fr; }
