@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 64 64">
+  <!-- Generator: Adobe Illustrator 30.2.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 1)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #111;
+      }
+
+      .st1 {
+        fill: #009ade;
+        font-family: Montserrat-Black, Montserrat;
+        font-size: 26.1px;
+        font-weight: 800;
+        letter-spacing: 0em;
+      }
+
+      .st2 {
+        fill: #222;
+      }
+    </style>
+  </defs>
+  <ellipse class="st0" cx="32" cy="47.3" rx="26" ry="9"/>
+  <rect class="st0" x="6" y="32.3" width="52" height="16" rx="2" ry="2"/>
+  <ellipse class="st2" cx="32" cy="33.3" rx="26" ry="9"/>
+  <ellipse cx="22" cy="31.3" rx="8" ry="3"/>
+  <text class="st1" transform="translate(4.2 29.6)"><tspan x="0" y="0">TGH</tspan></text>
+</svg>
