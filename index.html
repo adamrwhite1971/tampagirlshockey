@@ -313,7 +313,8 @@
     margin-bottom: 8px;
   }
 
-  .tag-tryout       { background: #fff0ee; color: var(--red); }
+  .tag-icetime     { background: #e0f4ff; color: #0277bd; }
+  .accent-icetime  { background: #0277bd; }
   .tag-clinic       { background: #e8f2ff; color: var(--blue-dark); }
   .tag-instructional{ background: #eaf5ee; color: var(--green); }
   .tag-tournament   { background: #fff4e0; color: var(--orange); }
@@ -567,7 +568,44 @@
     letter-spacing: 0.5px;
   }
 
-  .event-card.past {
+  .icetime-banner {
+    background: #e0f4ff;
+    border: 1.5px solid #0277bd;
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .icetime-banner.visible { display: flex; }
+
+  .icetime-banner p {
+    font-size: 13px;
+    color: #0277bd;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .icetime-banner a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    background: #0277bd;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+  }
+
+  .icetime-banner a:hover { opacity: 0.85; }
     opacity: 0.55;
     filter: grayscale(40%);
   }
@@ -629,6 +667,7 @@
     <button class="filter-btn" onclick="filterEvents('tryout', this)">Tryouts</button>
     <button class="filter-btn" onclick="filterEvents('clinic', this)">Clinics</button>
     <button class="filter-btn" onclick="filterEvents('instructional', this)">Instructional</button>
+    <button class="filter-btn" onclick="filterEvents('icetime', this)">Ice Time</button>
     <button class="filter-btn" onclick="filterEvents('tournament', this)">Tournaments</button>
     <button class="filter-btn" onclick="filterEvents('camp', this)">Camps</button>
   </div>
@@ -640,6 +679,10 @@
     <div class="results-count" id="eventCount"></div>
   </div>
 
+  <div class="icetime-banner" id="icetimeBanner">
+    <p>📅 Skate & Shoot sessions change weekly. Always check the live Clearwater Ice Arena calendar for the latest ice time availability.</p>
+    <a href="https://apps.daysmartrecreation.com/dash/x/#/online/tampabayice/calendar?start=2026-04-09&end=2026-04-30&event_type=9" target="_blank">View Live Calendar →</a>
+  </div>
   <div class="event-grid" id="eventGrid"></div>
 
   <div class="no-results" id="noResults">
@@ -680,7 +723,12 @@ const events = [
   { type: "camp", name: "AHCI Hockey Camp – Spring Break", org: "AdventHealth Center Ice", date: "March 30 – April 3, 2026", time: "8:00 AM – 3:00 PM", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "8U – 14U", cost: "$475 skaters / $175 goalies", spotsLeft: null, spotsLow: false, link: "https://ahcenterice.com/icehockey-campsnclinics/", endDate: "2026-04-03" },
   { type: "camp", name: "AHCI Summer Hockey Camps", org: "AdventHealth Center Ice", date: "Summer 2026 – Dates TBA", time: "8:00 AM – 3:00 PM", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "8U – 16U", cost: "$475 skaters / $175 goalies per week", spotsLeft: null, spotsLow: false, link: "https://ahcenterice.com/icehockey-campsnclinics/", endDate: null },
   { type: "camp", name: "Lightning Made Girls Summer Camp", org: "Tampa Bay Lightning / TGH Ice Plex", date: "June 2026 – Dates TBA", time: "8:00 AM – 4:00 PM", location: "TGH Ice Plex, Brandon", ageGroup: "Ages 5–15 Girls Only", cost: "Contact Kelley Steadman", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/ice-hockey-programs/icecamps/", endDate: null },
-  { type: "tournament", name: "Tampa Memorial Cup – Girls Divisions", org: "TCS Hockey", date: "May 22–25, 2026", time: "All Day", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "10U / 12U / 14U / 16U / 19U", cost: "$2,000–$2,450 per team", spotsLeft: null, spotsLow: false, link: "https://www.tcshockey.com/events/tampa-memorial-cup", endDate: "2026-05-25" }
+  { type: "tournament", name: "Tampa Memorial Cup – Girls Divisions", org: "TCS Hockey", date: "May 22–25, 2026", time: "All Day", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "10U / 12U / 14U / 16U / 19U", cost: "$2,000–$2,450 per team", spotsLeft: null, spotsLow: false, link: "https://www.tcshockey.com/events/tampa-memorial-cup", endDate: "2026-05-25" },
+  { type: "icetime", name: "Clearwater Ice Arena – Skate & Shoot", org: "Tampa Bay Ice / Clearwater Ice Arena", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "Clearwater Ice Arena, 13940 Icot Blvd, Clearwater", ageGroup: "All Ages – Hockey Players", cost: "See calendar", spotsLeft: null, spotsLow: false, link: "https://apps.daysmartrecreation.com/dash/x/#/online/tampabayice/calendar?start=2026-04-09&end=2026-04-30&event_type=9", endDate: null },
+  { type: "icetime", name: "TBSA Oldsmar – Skate & Shoot", org: "Tampa Bay Ice / Tampa Bay Skating Academy", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "Tampa Bay Skating Academy, 255 Forest Lakes Blvd, Oldsmar", ageGroup: "All Ages – Hockey Players", cost: "See calendar", spotsLeft: null, spotsLow: false, link: "https://apps.daysmartrecreation.com/dash/x/#/online/tampabayice/calendar?start=2026-04-09&end=2026-04-30&event_type=9", endDate: null },
+  { type: "icetime", name: "AdventHealth Center Ice – Open Hockey", org: "AdventHealth Center Ice", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "AdventHealth Center Ice, 3173 Cypress Ridge Blvd, Wesley Chapel", ageGroup: "All Ages – Hockey Players", cost: "See site", spotsLeft: null, spotsLow: false, link: "https://anc.apm.activecommunities.com/ahcenterice/calendars", endDate: null },
+  { type: "icetime", name: "TGH Ice Plex – Stick & Puck", org: "TGH Ice Plex", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "TGH Ice Plex, 10222 Elizabeth Place, Brandon", ageGroup: "All Ages – Hockey Players", cost: "See site", spotsLeft: null, spotsLow: false, link: "https://tghiceplex.com/hockey/", endDate: null },
+  { type: "icetime", name: "Power Pole Arena – Girls Stick & Puck", org: "Power Pole Arena / XTRA Ice", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "Power Pole Arena, 6910 Asphalt Ave, Tampa", ageGroup: "Girls Only sessions available", cost: "See site", spotsLeft: null, spotsLow: false, link: "https://xtraicehockey.org", endDate: null }
 ];
 
 function isPast(ev) {
@@ -691,7 +739,7 @@ function isPast(ev) {
 }
 
 function typeLabel(type) {
-  return { tryout: "Tryout", clinic: "Clinic", instructional: "Instructional", tournament: "Tournament", camp: "Camp" }[type] || type;
+  return { tryout: "Tryout", clinic: "Clinic", instructional: "Instructional", tournament: "Tournament", camp: "Camp", icetime: "Ice Time" }[type] || type;
 }
 
 function renderEvents(filter) {
@@ -778,6 +826,9 @@ function renderEvents(filter) {
 function filterEvents(type, btn) {
   document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
+  const banner = document.getElementById("icetimeBanner");
+  if (type === "icetime") banner.classList.add("visible");
+  else banner.classList.remove("visible");
   renderEvents(type);
 }
 
