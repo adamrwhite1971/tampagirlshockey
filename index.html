@@ -842,7 +842,7 @@
 <div id="rinksSection">
   <div class="results-bar">
     <div class="results-heading">Tampa Bay Rinks</div>
-    <div class="results-count">8 Rinks</div>
+    <div class="results-count">9 Rinks</div>
   </div>
   <div class="rinks-grid">
 
@@ -978,6 +978,22 @@
       </div>
     </div>
 
+    <div class="rink-card">
+      <div class="rink-card-top">
+        <div class="rink-name">Orlando Ice Den</div>
+        <div class="rink-location">8701 Maitland Summit Blvd, Maitland (Orlando), FL 32810</div>
+      </div>
+      <div class="rink-card-body">
+        <p class="rink-desc">Central Florida's premier ice hockey and skating destination inside RDV Sportsplex. Two sheets of ice, youth and adult leagues, camps, clinics, skate & shoot, and Learn to Play Hockey. Host of the annual SGHL Girls Hockey Mixer.</p>
+        <div class="rink-phone">📞 (407) 916-2550</div>
+        <div class="rink-socials">
+          <a href="https://www.orlandoiceden.com" class="social-btn web" target="_blank">Website</a>
+          <a href="https://www.facebook.com/GHCIceDen/" class="social-btn fb" target="_blank">Facebook</a>
+          <a href="https://www.instagram.com/orlandoiceden/" class="social-btn ig" target="_blank">Instagram</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1009,11 +1025,13 @@ const events = [
   { type: "instructional", name: "Girls Learn to Play 201", org: "Lightning – Coach Kelley Steadman", date: "Ongoing – 8-Week Program", time: "Various", location: "Lightning Made Training Center, Tampa", ageGroup: "Ages 5–12", cost: "Contact for pricing", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlsonlylearntoplay/", endDate: null },
   { type: "instructional", name: "Girls Rec League – 9U & 13U", org: "Tampa Bay Lightning Hockey Development", date: "Ongoing – 8-Week Seasons", time: "4v4 gameplay + championship week", location: "Power Pole Arena, Tampa", ageGroup: "9U / 13U", cost: "$800/year (2 seasons + 2 tournaments)", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlsrecleague/", endDate: null },
   { type: "instructional", name: "Girls High School Hockey – Spring", org: "Tampa Bay Lightning Hockey Development", date: "Evals March 12 · Season ends June 2026", time: "1 practice + 1 game per week", location: "Clearwater Ice Arena + Tampa Bay rinks", ageGroup: "Girls Grades 8–12", cost: "TBA", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/girlshockey/girlshighschool/", endDate: "2026-06-30" },
+  { type: "clinic", name: "Cyclones Girls Hockey Clinic", org: "Cyclones Hockey", date: "May 16, 2026", time: "2:00–3:30 PM & 5:00–6:30 PM (both sessions included)", location: "Nest Hockey Academy, 9175 McKendree Rd, Wesley Chapel", ageGroup: "10U – 16U (grouped by age)", cost: "$55 Cyclones players (code: CYCLONES) / $85 non-Cyclones / Goalies Free (code: GOALIE)", spotsLeft: null, spotsLow: false, link: "https://cycloneshockey.org/clinics", endDate: "2026-05-16" },
   { type: "clinic", name: "Girls Only Camps & Clinics", org: "Tampa Bay Lightning Hockey Development", date: "Various – Check site for schedule", time: "Various", location: "Multiple Tampa Bay Rinks", ageGroup: "All Ages & Levels", cost: "Varies by session", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/ice-hockey-programs/icehockeycampsclinics/", endDate: null },
   { type: "clinic", name: "Sun Blades Spring Power Skating", org: "Sun Blades Hockey", date: "Spring 2026 – Check site for dates", time: "Various sessions", location: "Clearwater Ice Arena, Clearwater", ageGroup: "All Skill Levels", cost: "Contact for pricing", spotsLeft: null, spotsLow: false, link: "https://sunbladeshockey.com/schedule", endDate: null },
   { type: "camp", name: "AHCI Hockey Camp – Spring Break", org: "AdventHealth Center Ice", date: "March 30 – April 3, 2026", time: "8:00 AM – 3:00 PM", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "8U – 14U", cost: "$475 skaters / $175 goalies", spotsLeft: null, spotsLow: false, link: "https://ahcenterice.com/icehockey-campsnclinics/", endDate: "2026-04-03" },
   { type: "camp", name: "AHCI Summer Hockey Camps", org: "AdventHealth Center Ice", date: "Summer 2026 – Dates TBA", time: "8:00 AM – 3:00 PM", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "8U – 16U", cost: "$475 skaters / $175 goalies per week", spotsLeft: null, spotsLow: false, link: "https://ahcenterice.com/icehockey-campsnclinics/", endDate: null },
   { type: "camp", name: "Lightning Made Girls Summer Camp", org: "Tampa Bay Lightning / TGH Ice Plex", date: "June 2026 – Dates TBA", time: "8:00 AM – 4:00 PM", location: "TGH Ice Plex, Brandon", ageGroup: "Ages 5–15 Girls Only", cost: "Contact Kelley Steadman", spotsLeft: null, spotsLow: false, link: "https://lightninghockeydevelopment.com/ice-hockey-programs/icecamps/", endDate: null },
+  { type: "tournament", name: "SGHL 6th Annual Girls Hockey Mixer", org: "Southern Girls Hockey League (SGHL)", date: "July 31 – August 2, 2026", time: "All Day · Sign up deadline June 5, 2026", location: "Orlando Ice Den, 8701 Maitland Summit Blvd, Maitland", ageGroup: "8/10U / 12U / 14U / 16U / 19U", cost: "$310 per player (includes jersey, socks, 4 games, clinic, community project)", spotsLeft: null, spotsLow: false, link: "https://docs.google.com/forms/d/e/1FAIpQLSfutgXDUFRS3e-3BoFykp41MSXpdHRorpZi6XSwwqmGc13WLQ/viewform", endDate: "2026-08-02" },
   { type: "tournament", name: "HHOF Series Tampa Bay – Girls Only", org: "Play Hockey / Hockey Hall of Fame Series", date: "June 12–14, 2026", time: "All Day", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "2011–2016 Birth Years", cost: "$3,950 per team (invite-only)", spotsLeft: null, spotsLow: false, link: "https://playhockey.com/hhof-series-tampa-bay", endDate: "2026-06-14" },
   { type: "tournament", name: "Tampa Memorial Cup – Girls Divisions", org: "TCS Hockey", date: "May 22–25, 2026", time: "All Day", location: "AdventHealth Center Ice, Wesley Chapel", ageGroup: "10U / 12U / 14U / 16U / 19U", cost: "$2,000–$2,450 per team", spotsLeft: null, spotsLow: false, link: "https://www.tcshockey.com/events/tampa-memorial-cup", endDate: "2026-05-25" },
   { type: "icetime", name: "Clearwater Ice Arena – Skate & Shoot", org: "Tampa Bay Ice / Clearwater Ice Arena", date: "Recurring – Check calendar for dates", time: "Various sessions", location: "Clearwater Ice Arena, 13940 Icot Blvd, Clearwater", ageGroup: "All Ages – Hockey Players", cost: "See calendar", spotsLeft: null, spotsLow: false, link: "https://apps.daysmartrecreation.com/dash/x/#/online/tampabayice/calendar?start=2026-04-09&end=2026-04-30&event_type=9", fblink: "https://www.facebook.com/ClearwaterIce/", endDate: null },
